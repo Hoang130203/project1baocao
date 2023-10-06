@@ -1,6 +1,5 @@
 import classNames from 'classnames/bind';
 import styles from './Danhsachthuphi.module.scss';
-import ButtonMenu from '../../Layout/Sidebar/ButtonMenu';
 import { faPlus, faChevronRight } from '@fortawesome/free-solid-svg-icons';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { Link } from 'react-router-dom';
@@ -12,7 +11,7 @@ function DanhSachThu() {
         <div className={cx('wrapper')}>
             <div className={cx('tools')}>
                 <h1 className={cx('title')}>Danh sách thu phí</h1>
-                <Link>
+                <Link to="/taophieuthu">
                     <button className={cx('btn')}>
                         <FontAwesomeIcon icon={faPlus} style={{ marginRight: '10px' }} />
                         Tạo phiếu thu
@@ -35,28 +34,30 @@ function DanhSachThu() {
             </div>
             <div className={cx('table')}>
                 <table>
-                    <tr>
-                        <th>Số thứ tự</th>
-                        <th>Họ và tên</th>
-                        <th>Số nhà</th>
-                        <th>Tổng số tiền</th>
-                        <th>Thời gian</th>
-                        <th></th>
-                    </tr>
-                    {list.map((index) => {
-                        return (
-                            <tr key={index}>
-                                <td>-</td>
-                                <td>-</td>
-                                <td>-</td>
-                                <td>-</td>
-                                <td>-</td>
-                                <td>
-                                    <a href="#">Chi tiết</a>
-                                </td>
-                            </tr>
-                        );
-                    })}
+                    <tbody>
+                        <tr>
+                            <th>Số thứ tự</th>
+                            <th>Họ và tên</th>
+                            <th>Số nhà</th>
+                            <th>Tổng số tiền</th>
+                            <th>Thời gian</th>
+                            <th></th>
+                        </tr>
+                        {list.map((user, index) => {
+                            return (
+                                <tr key={index}>
+                                    <td>{index}</td>
+                                    <td>-</td>
+                                    <td>-</td>
+                                    <td>-</td>
+                                    <td>-</td>
+                                    <td>
+                                        <Link to="/home">Chi tiết</Link>
+                                    </td>
+                                </tr>
+                            );
+                        })}
+                    </tbody>
                 </table>
                 <div className={cx('page')}>
                     <span>Trang 1/1</span>

@@ -30,7 +30,6 @@ body {
     text-rendering: optimizespeed;
 }
 button,
-input,
 [tabindex] {
     outline: none;
     border: none;
@@ -43,4 +42,23 @@ body .tippy-box {
     font-size: medium;
 
     -webkit-font-smoothing: antialiased;
+}
+table {
+    border: 1px solid black;
+    border-left: none;
+    border-bottom: none;
+    width: fit-content;
+}
+
+th,
+td {
+    border-left: 1px solid black;
+    border-bottom: 1px solid black;
+    text-align: left;
+    padding-left: 10px;
+    min-width: 150px;
+    height: 30px;
+}
+th {
+    background-color: #e5e5e5;
 }
