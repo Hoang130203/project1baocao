@@ -20,8 +20,8 @@
     margin: 15px 0px 10px;
 }
 .input {
-    width: 550px;
-    height: 45px;
+    width: 420px;
+    height: 32px;
     font-size: 20px;
 }
 .date {
@@ -36,12 +36,19 @@
     color: #f83427;
     margin: 15px 0px 0px;
 }
-.delete {
+.delete,
+.detail {
     background-color: transparent;
     text-decoration: underline;
     font-size: 15px;
     font-weight: 600;
+    padding: 0px 4px;
+}
+.delete {
     color: #f83427;
+}
+.detail {
+    color: #3454fc;
 }
 .btn-confirm,
 .btn-cancel {
@@ -71,4 +78,8 @@ select {
 }
 option {
     height: 40px;
+}
+.tbl th,
+.tbl td {
+    width: 180px;
 }

@@ -8,10 +8,10 @@
 }
 .attr {
     font-size: 22px;
-    margin: 12px 0px;
+    margin: 17px 0px;
 }
 .text {
-    width: 160px;
+    min-width: 160px;
     display: inline-block;
 }
 .text2 {
@@ -20,29 +20,21 @@
     margin: 15px 0px 10px;
 }
 .input {
-    width: 550px;
-    height: 45px;
+    width: 455px;
+    height: 36px;
     font-size: 20px;
+}
+.input2 {
+    width: 210px;
+    height: 35px;
+    font-size: 20px;
+    margin-left: 20px;
 }
 .date {
     height: 37px;
     width: 213px;
 }
-.add {
-    background-color: transparent;
-    text-decoration: underline;
-    font-size: 15px;
-    font-weight: 600;
-    color: #f83427;
-    margin: 15px 0px 0px;
-}
-.delete {
-    background-color: transparent;
-    text-decoration: underline;
-    font-size: 15px;
-    font-weight: 600;
-    color: #f83427;
-}
+
 .btn-confirm,
 .btn-cancel {
     width: 135px;
@@ -59,16 +51,21 @@
 .btn-confirm {
     background-color: #79c9ff;
 }
-.combobox {
-    width: 100px;
-    height: 20px;
-    font-size: 15px;
+.select1,
+.select2 {
+    height: 35px;
+    font-size: 20px;
+    border: solid 1px #333;
+    margin-right: 30px;
 }
-select {
-    border: none;
-    font-size: 15px;
-    padding: 0em 0.8em 0em 0.8em;
+.select1 {
+    width: 150px;
 }
-option {
-    height: 40px;
+.select2 {
+    width: 277px;
+}
+.radio {
+    width: 18px;
+    height: 18px;
+    margin: 0px 10px;
 }

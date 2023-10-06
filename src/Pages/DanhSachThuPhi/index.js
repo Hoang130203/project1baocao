@@ -33,7 +33,7 @@ function DanhSachThu() {
                 <button className={cx('btn-search')}>Tìm kiếm</button>
             </div>
             <div className={cx('table')}>
-                <table>
+                <table className={cx('tbl')}>
                     <tbody>
                         <tr>
                             <th>Số thứ tự</th>

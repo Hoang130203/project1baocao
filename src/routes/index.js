@@ -4,6 +4,9 @@ import DanhMucThuPhi from '../Pages/DanhSachThuPhi';
 import HoKhau from '../Pages/HoKhau';
 import NhanKhau from '../Pages/NhanKhau';
 import TaoPhieuThu from '../Pages/TaoPhieuThu';
+import TaoKhoanThu from '../Pages/TaoKhoanThu';
+import ThemHoDan from '../Pages/ThemHoDan';
+import ThemCuDan from '../Pages/ThemCuDan';
 const publicRoutes = [
     { path: '/', component: Home },
     { path: '/danhmucthu', component: DanhMucThu },
@@ -11,6 +14,9 @@ const publicRoutes = [
     { path: '/hokhau', component: HoKhau },
     { path: '/nhankhau', component: NhanKhau },
     { path: '/taophieuthu', component: TaoPhieuThu },
+    { path: '/taokhoanthu', component: TaoKhoanThu },
+    { path: '/themhodan', component: ThemHoDan },
+    { path: '/themcudan', component: ThemCuDan },
 ];
 
 export { publicRoutes };

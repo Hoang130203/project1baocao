@@ -22,21 +22,16 @@
     font-size: larger;
     font-weight: 700;
 }
-.input,
-.input2 {
+.input {
     border: 2px solid #333;
-    margin-right: 10px;
+    margin-right: 30px;
     margin-left: 10px;
     height: 30px;
-    width: 160px;
+    width: 265px;
     font-size: 15px;
     padding-left: 5px;
 }
-.input2 {
-    padding-right: 30px;
-    width: 180px;
-    height: 35px;
-}
+
 .btn-search {
     width: 130px;
     height: 40px;
@@ -53,7 +48,6 @@
     margin-right: 20%;
     padding: 20px 0px;
 }
-.tbl th,
-.tbl td {
-    width: 160px;
+.total {
+    background-color: #fbcccc;
 }
