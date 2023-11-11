@@ -1,0 +1,41 @@
+//Mai Minh Hoàng
+//20215381
+#include <bits/stdc++.h> // Thêm tất cả thư viện chuẩn
+
+using namespace std; // Sử dụng không gian tên chuẩn
+set<string> keys_81; // Khai báo một set của chuỗi
+int main() // Hàm chính
+{
+    ios_base::sync_with_stdio(0); cin.tie(0); cout.tie(0); // Tối ưu hóa việc nhập/xuất dữ liệu
+    string s_81; // Khai báo một chuỗi
+    while (getline(cin, s_81)) { // Đọc từng dòng từ đầu vào
+        if (s_81[0] == '*') { // Nếu dòng bắt đầu bằng '*', thoát vòng lặp
+            break;
+        }
+        auto t_81 = keys_81.insert(s_81); // Thêm chuỗi vào set
+    }
+    while (getline(cin, s_81)) { // Đọc từng dòng từ đầu vào
+        if (s_81 == "***") { // Nếu dòng là "***", thoát vòng lặp
+            break;
+        }
+        stringstream ss_81(s_81); // Tạo một stringstream từ chuỗi
+        string s1_81; // Khai báo một chuỗi
+        string s2_81; // Khai báo một chuỗi khác
+        ss_81 >> s1_81 >> s2_81; // Đọc hai chuỗi từ stringstream
+        if (s1_81[0] == 'f') { // Nếu chuỗi đầu tiên bắt đầu bằng 'f'
+            auto t_81 = keys_81.find(s2_81); // Tìm chuỗi thứ hai trong set
+            if (t_81 == keys_81.end()) { // Nếu không tìm thấy, in ra 0
+                cout << 0 << "\n";
+            }
+            else { // Nếu tìm thấy, in ra 1
+                cout << 1 << "\n";
+            }
+        }
+        else { // Nếu chuỗi đầu tiên không bắt đầu bằng 'f'
+            auto t_81 = keys_81.insert(s2_81); // Thêm chuỗi thứ hai vào set và in ra kết quả của phép toán insert
+            cout << t_81.second << "\n";
+        }
+    }
+    return 0; // Kết thúc chương trình
+
+} // Kết thúc hàm chính

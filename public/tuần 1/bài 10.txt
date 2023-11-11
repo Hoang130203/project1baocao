@@ -1,0 +1,36 @@
+//CPP 
+//Mai Minh Hoàng
+//20215381
+#include <bits/stdc++.h> 
+using namespace std;
+
+int main() {
+    //khai báo lần lượt các hệ số của biểu thức
+    int a_81, b_81, c_81;
+    //nhập vào các số đó
+    cin >> a_81 >> b_81 >> c_81;
+    //tính delta của pt bậc 2
+    double delta_81 = b_81 * b_81 - 4 * a_81 * c_81;
+    //delta<0 thì phương trình vô nghiệm
+    if (delta_81 < 0) {
+
+        cout << "NO SOLUTION" << endl;
+    }
+    //delta=0 thì có 1 nghiệm kép
+    else if (delta_81 == 0) {
+
+        double x0_81 = -b_81 / (2.0 * a_81);
+        //in ra lấy 2 số sau dấu phẩy
+        printf("%.2f", x0_81);
+    }
+    //delta>0 thì pt có 2 nghiệm phân biệt
+    else {
+        //nghiệm thứ 1
+        double x1_81 = (-b_81 - sqrt(delta_81)) / (2.0 * a_81);
+        //nghiệm thứ 2
+        double x2_81 = (-b_81 + sqrt(delta_81)) / (2.0 * a_81);
+        printf("%.2f %.2f", x1_81, x2_81);
+    }
+
+    return 0;
+}

@@ -1,0 +1,60 @@
+//CPP 
+//Mai Minh Hoàng
+//20215381
+#include <bits/stdc++.h> 
+//Khai báo không gian tên
+using namespace std;
+//hàm kiểm tra ký tự có phải là số từ 0 tới 9 không
+bool check(char a_81)
+{
+    //nếu ký tự a_81 có số thứ tự lớn hơn hoặc bằng thứ tự của ký tự 0 và bé hơn bằng thứ tự ký tự 9 trong bảng mã
+    //Ascii thì trả về true
+    if (a_81 >= '0' && a_81 <= '9')return true;
+    //ngược lại trả về false
+    return false;
+}
+int main()
+{
+    //khai báo chuỗi s_81 chứa xâu cần định dạng
+    string s_81;
+    //nhập vào xâu
+    cin >> s_81;
+    //nếu xâu vừa nhập có độ dài khác 8 thì in ra INCORRECT
+    if (s_81.size() != 8) cout << "INCORRECT";
+    //nếu có độ dài là 10
+    else
+    {
+        //nếu ký tự thứ 2 hoặc thứ 5 trong xâu khác ký tự : thì in ra INCORRECT
+        if (s_81[2] != ':' || s_81[5] != ':')
+        {
+            cout << "INCORRECT";
+            return 0;
+        }
+        //duyệt qua tất cả ký tự trong xâu đã nhập
+        for (int i_81 = 0; i_81 < 8; i_81++)
+        {
+            //bỏ qua ký tự thứ 2 và 5 là ký tự -
+            if ((i_81 != 2) && (i_81 != 5))
+            {
+                //kiểm tra xem ký tự đó có phải là chữ số không
+                if (check(s_81[i_81]) == false)
+                {
+                    //nếu khác thì in ra INCORRECT
+                    cout << "INCORRECT";
+                    return 0;
+                }
+            }
+        }
+        //chuyển 2 ký tự đầu tiên của xâu thành 1 số 4 chữ số giá trị là giờ
+        int h_81 =(s_81[0] - '0') * 10 + s_81[1] - '0';
+        //tương tự ở trên nhưng lấy ra phút
+        int m_81 = (s_81[3] - '0') * 10 + s_81[4] - '0';
+        //tương tự ở trên và lấy ra giây
+        int ss_81 = (s_81[6] - '0') * 10 + s_81[7] - '0';
+        //nếu giờ có giá trị từ 0 tới 23 và phút.giây có giá trị từ 0 tới 59 thì in ra tổng số giây
+        if (m_81 >= 0 && m_81 <= 59 && ss_81 >= 0 && ss_81 <= 59 &&  h_81 >= 0 && h_81 <= 23) cout << h_81*3600+m_81*60+ss_81;
+        //nếu giờ phút giây không nằm trong các giá trị đúng ở trên thì in ra INCORRECT
+        else cout << "INCORRECT";
+    }
+    return 0;
+}

@@ -1,0 +1,10 @@
+#PYTHON 
+#Mai Minh Hoàng
+#20215381
+#nhập xâu P1
+P1=input()
+#nhập xâu P2
+P2=input()
+#nhập xâu từ bàn phím
+# và thay thế tất cả xâu P1 trong xâu đó thành P2 và in ra màn hình
+print(input().replace(P1,P2))

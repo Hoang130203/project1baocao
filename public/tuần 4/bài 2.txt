@@ -1,0 +1,33 @@
+//Mai Minh Hoang-20215381
+#include<iostream>
+#include<vector>
+#include<sstream>
+using namespace std; // Sử dụng không gian tên chuẩn
+int n_81, m_81; // Khai báo hai biến số nguyên
+int calcPos_81(string s_81) { // Hàm tính toán vị trí
+    int val_81 = 0; // Khởi tạo giá trị
+    int len_81 = s_81.length(); // Lấy độ dài của chuỗi
+
+    for (int i_81 = 0; i_81 < len_81; i_81++) { // Duyệt qua từng ký tự trong chuỗi
+        int t_81 = s_81[i_81]; // Lấy giá trị ASCII của ký tự
+        val_81 = (val_81 * 256 + t_81) % m_81; // Tính toán giá trị mới
+
+    }
+    return val_81; // Trả về giá trị
+}
+int main() // Hàm chính
+{
+    ios_base::sync_with_stdio(0); cin.tie(0); cout.tie(0); // Tối ưu hóa việc nhập/xuất dữ liệu
+    string s_81; // Khai báo một chuỗi
+    getline(cin, s_81); // Đọc một dòng từ đầu vào
+    stringstream ss_81(s_81); // Tạo một stringstream từ chuỗi
+    ss_81 >> n_81 >> m_81; // Đọc hai số từ stringstream
+
+    for (int i_81 = 0; i_81 < n_81; i_81++) { // Lặp lại n lần
+
+        getline(cin, s_81); // Đọc một dòng từ đầu vào
+        cout << calcPos_81(s_81) << "\n"; // In ra kết quả của hàm calcPos
+    }
+    return 0; // Kết thúc chương trình
+
+}

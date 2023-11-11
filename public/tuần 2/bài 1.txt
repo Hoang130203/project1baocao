@@ -1,0 +1,17 @@
+//Mai Minh Hoàng
+//20215381
+#include <bits/stdc++.h>
+using namespace std; 
+long Fibonacci_81(int n_81){ // Hàm Fibonacci_81 tính số Fibonacci thứ n_81
+    if(n_81==1 || n_81==0){ // Trường hợp cơ sở
+        return n_81;
+    }
+    return Fibonacci_81(n_81-1)+Fibonacci_81(n_81-2); // Tính số Fibonacci thứ n_81
+}
+int main()  // Hàm main
+{ 
+    int n_81; // Khai báo biến n_81
+    cin>>n_81; // Nhập giá trị từ bàn phím
+    cout<<Fibonacci_81(n_81-1); // In ra số Fibonacci thứ (n_81 - 1)
+    return 0; 
+}

@@ -1,0 +1,15 @@
+#PYTHON 
+#Mai Minh Hoàng
+#20215381
+#khai báo n81 và nhập từ bàn phím,chuyển n81 sang số nguyên
+n81 = int(input())
+#khai báo mảng m81
+m81 = []
+#duyệt qua tất cả các số có 3 chữ số
+for i81 in range(100, 1000):
+#nếu số đó chia hết cho n81 thì thêm vào mảng m81
+    if i81 % n81 == 0: m81.append(i81)
+#duyệt qua tất cả phần tử mảng m81
+for i81 in m81:
+# in ra màn hình, cách nhau bởi khoảng trắng
+    print(i81, end=' ')

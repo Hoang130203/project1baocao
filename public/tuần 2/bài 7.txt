@@ -1,0 +1,33 @@
+//Mai Minh Hoàng
+//20215381
+#include <bits/stdc++.h>
+using namespace std;
+#define N_81 20 // Định nghĩa hằng số N_81
+int mang_81[N_81]; // Khai báo mảng một chiều mang_81
+int sum_81 = 0; // Khai báo và khởi tạo biến tổng sum_81
+int targetsum_81; // Khai báo biến tổng mục tiêu targetsum_81
+void printt_81(int k_81, int n_81) { // Hàm printt_81 in ra tất cả các dãy số có tổng bằng targetsum_81
+	if (k_81 == n_81) { // nếu số phần tử trong mảng đã đầy
+		if (targetsum_81 == sum_81) { // Nếu tổng hiện tại bằng tổng mục tiêu
+
+			for (int i = 0; i < n_81; i++) { // Duyệt qua từng phần tử của mảng
+				cout << mang_81[i]<<" "; // In ra giá trị của phần tử thứ i
+			}
+			cout << endl; // Xuống dòng
+		}
+		return; // Kết thúc hàm
+	}
+	for (int i = 1; i <= targetsum_81-sum_81; i++) { // Duyệt qua từng giá trị có thể của phần tử thứ k_81
+		mang_81[k_81] = i; // Gán giá trị cho phần tử thứ k_81
+		sum_81 += i; // Cập nhật tổng hiện tại
+		printt_81(k_81 + 1, n_81); // Gọi đệ quy hàm printt với k tăng lên 1 đơn vị
+		sum_81 -= i; // Trừ đi giá trị vừa thêm vào từ tổng hiện tại
+		mang_81[k_81] = 0; // Đặt lại giá trị của phần tử thứ k về 0
+	}
+}
+int main() {
+	int n_81;
+	cin >> n_81>>targetsum_81; // Nhập giá trị từ bàn phím
+	printt_81(0, n_81);
+	return 0;
+}

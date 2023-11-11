@@ -1,0 +1,22 @@
+//Mai Minh Hoàng
+//20215381
+#include <bits/stdc++.h> 
+using namespace std;
+#define N_81 1000
+long long mang_81[N_81][N_81]; // Khai báo mảng hai chiều mang_81
+long long toHop_81(long long n, long long k) { // Hàm toHop_81 tính tổ hợp chập k của n
+	if (n == 1 || k==0 ||k==n) { // Trường hợp cơ sở
+		return 1;
+	}
+	if (mang_81[n][k] != 0) { // Trường hợp đã tính toán trước đó
+		return mang_81[n][k];
+	}
+	mang_81[n][k] = (toHop_81(n - 1, k - 1) + toHop_81(n - 1, k))%1000000007; // Tính toán tổ hợp chập k của n
+	return mang_81[n][k]; // Trả về kết quả
+}
+int main() { 
+	long long n, k;
+	cin >> k >> n;	// Nhập giá trị từ bàn phím	
+	cout << toHop_81(n, k); // In ra tổ hợp chập k của n
+	return 0; 
+}

@@ -1,0 +1,67 @@
+//Mai Minh Hoàng
+//20215381
+#include <iostream>
+#include <vector>
+#include <algorithm>
+#include <map>
+using namespace std;
+
+class Edge_81 { // Định nghĩa lớp Edge_81
+public:
+    int u_81;
+    int v_81;
+    int w_81;
+    Edge_81(int u, int v, int w) : u_81(u), v_81(v), w_81(w) {}
+};
+
+int v_81; // Số lượng đỉnh
+vector<Edge_81> edges_81; // Danh sách các cạnh
+vector<int> parent_81;  // Sử dụng vector để lưu trữ các nút cha
+
+bool comparator_81(const Edge_81& obj1, const Edge_81& obj2) { // Hàm so sánh hai đối tượng Edge_81
+    return obj1.w_81 < obj2.w_81;
+}
+
+int findRoot_81(int node) { // Tìm gốc của cây chứa nút
+    if (parent_81[node] == -1) {
+        return node; // Nếu nút là gốc của cây
+    }
+    parent_81[node] = findRoot_81(parent_81[node]); // Nén đường đi: cập nhật parent của nút
+    return parent_81[node];
+}
+
+void mergeTree_81(int root1, int root2) { // Hợp nhất hai cây
+    if (root1 != root2) {
+        parent_81[root1] = root2; // Hợp nhất cây root1 vào cây root2
+    }
+}
+
+int main() {
+    ios_base::sync_with_stdio(0);
+    cin.tie(0);
+    cout.tie(0);
+
+    int e;
+    cin >> v_81 >> e;
+    parent_81.assign(v_81 + 1, -1); // Khởi tạo vector parent
+
+    for (int i = 0; i < e; i++) {
+        int a, b, c;
+        cin >> a >> b >> c;
+        edges_81.emplace_back(a, b, c); // Thêm cạnh vào danh sách
+    }
+    sort(edges_81.begin(), edges_81.end(), comparator_81); // Sắp xếp danh sách cạnh
+
+    int sum = 0;
+    for (const Edge_81& edge : edges_81) { // Duyệt qua từng cạnh
+        int pos_u = findRoot_81(edge.u_81); // Tìm gốc của cây chứa u
+        int pos_v = findRoot_81(edge.v_81); // Tìm gốc của cây chứa v
+        if (pos_u != pos_v) { // Nếu u và v không thuộc cùng một cây
+            mergeTree_81(pos_u, pos_v); // Hợp nhất hai cây lại
+            sum += edge.w_81; // Cộng trọng số của cạnh vào tổng trọng số
+        }
+    }
+
+    cout << sum; // In ra tổng trọng số
+    return 0;
+}

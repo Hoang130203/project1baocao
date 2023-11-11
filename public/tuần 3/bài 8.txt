@@ -1,0 +1,59 @@
+//Mai Minh Hoàng
+//20215381
+#include <iostream>
+#include <vector>
+#include <string>
+#include <sstream>
+using namespace std;
+
+int main() {
+    int n_81; // Khai báo biến n_81 để lưu số lượng phần tử trong dãy
+    cin >> n_81;
+    vector<int> sequence_81; // Khai báo vector sequence_81 để lưu dãy số
+
+    // Đọc n_81 số nguyên từ input và lưu vào vector sequence_81
+    for (int i_81 = 0; i_81 < n_81; i_81++) {
+        int ai_81;
+        cin >> ai_81;
+        sequence_81.push_back(ai_81);
+    }
+
+    cin.ignore(); // Đọc và bỏ qua dấu xuống dòng sau số nguyên
+
+    string action_81;
+    while (getline(cin, action_81)) {
+        if (action_81 == "#") {
+            break;  // Thoát khỏi vòng lặp nếu gặp ký tự #
+        }
+        else if (action_81 == "PRINT") {
+            // In ra dãy số trong vector sequence_81
+            for (int i_81 = 0; i_81 < sequence_81.size(); i_81++) {
+                cout << sequence_81[i_81];
+                if (i_81 < sequence_81.size()) {
+                    cout << " "; // In khoảng trắng sau mỗi số
+                }
+            }
+            cout << endl; // In dấu xuống dòng
+        }
+        else {
+            istringstream iss_81(action_81);//phân tích lệnh
+            string cmd_81;//tên lệnh 
+            iss_81 >> cmd_81;
+            if (cmd_81 == "ADD") {
+                int v_81;
+                iss_81 >> v_81;//tham số của lệnh
+                int middle_81 = sequence_81.size() / 2;
+
+                // Chèn giá trị v_81 vào vị trí giữa của dãy số
+                if (sequence_81.size() % 2 == 0) {
+                    sequence_81.insert(sequence_81.begin() + middle_81, v_81);
+                }
+                else {
+                    sequence_81.insert(sequence_81.begin() + middle_81 + 1, v_81);
+                }
+            }
+        }
+    }
+
+    return 0;
+}

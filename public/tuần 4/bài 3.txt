@@ -1,0 +1,27 @@
+//Mai Minh Hoàng
+//20215381
+#include <bits/stdc++.h> 
+#include <unordered_set> // Thêm thư viện unordered_set
+using namespace std; 
+unordered_set<int> all_81; // Khai báo một unordered_set của số nguyên
+int main() // Hàm chính
+{
+	ios_base::sync_with_stdio(0); cin.tie(0); cout.tie(0); // Tối ưu hóa việc nhập/xuất dữ liệu
+	int n_81; // Khai báo một biến số nguyên
+	cin >> n_81; // Đọc một số từ đầu vào
+
+	for (int i_81 = 0; i_81 < n_81; i_81++) { // Lặp lại n lần
+		int j_81; // Khai báo một biến số nguyên
+		cin >> j_81; // Đọc một số từ đầu vào
+		auto t_81 = all_81.find(j_81); // Tìm số trong unordered_set
+		if (t_81 == all_81.end()) { // Nếu không tìm thấy, in ra 0
+			cout << 0 << "\n";
+		}
+		else { // Nếu tìm thấy, in ra 1
+			cout << 1 << "\n";
+		}
+		all_81.insert(j_81); // Thêm số vào unordered_set
+	}
+	return 0; 
+
+} // Kết thúc hàm chính

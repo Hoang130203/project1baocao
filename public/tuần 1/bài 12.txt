@@ -1,0 +1,32 @@
+#Mai Minh Hoàng
+#20215381
+# Nhập giá trị n_81 và k_81
+n_81, k_81 = map(int, input().split())
+
+# Nhập mảng
+mang_81 = list(map(int, input().split()))
+
+# Khởi tạo biến đếm số lượng mảng con tổng chẵn
+even_count_81 = 0
+
+# Tính tổng k phần tử đầu tiên trong mảng mang_81
+sum_81 = sum(mang_81[:k_81])
+
+# Kiểm tra nếu tổng đó là số chẵn
+if sum_81 % 2 == 0:
+    even_count_81 += 1
+
+# Duyệt qua các mảng con
+for i_81 in range(k_81, n_81):
+    # Trừ đi phần tử đầu tiên của mảng con trước đó
+    sum_81 -= mang_81[i_81 - k_81]
+    
+    # Cộng thêm phần tử cuối mảng con mới
+    sum_81 += mang_81[i_81]
+
+    # Kiểm tra nếu tổng mới là số chẵn
+    if sum_81 % 2 == 0:
+        even_count_81 += 1
+
+# In ra số lượng tổng chẵn
+print(even_count_81)

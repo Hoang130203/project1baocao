@@ -1,0 +1,28 @@
+//CPP
+//Mai Minh Hoàng
+//20215381 
+#include <bits/stdc++.h> 
+
+int main() 
+{ 
+//khai báo biến nguyên n81 là số phần tử
+int n81;
+//khai báo s81 lưu tổng tất cả phần tử
+long s81=0;
+//nhập vào số phần tử
+std::cin>>n81;
+//khai báo mảng động chứa n81 phần tử
+int *mang81=new int[n81];
+//nhập từng phần tử trong mảng 
+for(int i81=0;i81<n81;i81++){
+    std::cin>>mang81[i81];
+    
+}
+//duyệt qua tất cả phần tử và tính tổng của chúng, lưu vào biến s81
+for(int i81=0;i81<n81;i81++){
+    s81+=mang81[i81];
+}
+//in kết quả
+std::cout<<s81;
+return 0;
+}

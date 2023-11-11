@@ -1,0 +1,25 @@
+//C++ 
+#include <bits/stdc++.h> // Thêm tất cả thư viện chuẩn
+#include <unordered_set> // Thêm thư viện unordered_set
+using namespace std; // Sử dụng không gian tên chuẩn
+unordered_set<int> all_81; // Khai báo một unordered_set của số nguyên
+int main() // Hàm chính
+{
+    ios_base::sync_with_stdio(0);cin.tie(0);cout.tie(0); // Tối ưu hóa việc nhập/xuất dữ liệu
+	int n_81,m_81; // Khai báo hai biến số nguyên
+	cin >> n_81 >> m_81; // Đọc hai số từ đầu vào
+	int dem_81=0; // Khởi tạo biến đếm
+	for (int i_81 = 0; i_81 < n_81; i_81++) { // Lặp lại n lần
+		int j_81; // Khai báo một biến số nguyên
+		cin >> j_81; // Đọc một số từ đầu vào
+		auto t_81 = all_81.find(m_81-j_81); // Tìm số trong unordered_set
+		if (t_81 != all_81.end()) { // Nếu tìm thấy, tăng biến đếm lên 1
+			dem_81++;
+		}
+		
+		all_81.insert(j_81); // Thêm số vào unordered_set
+	}
+	cout << dem_81; // In ra giá trị của biến đếm
+	return 0; // Kết thúc chương trình
+    
+} // Kết thúc hàm chính

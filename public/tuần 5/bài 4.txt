@@ -1,0 +1,79 @@
+//Mai Minh Hoàng
+//20215381
+#include <iostream> 
+#include <sstream>
+#include <stack> 
+#include<queue> 
+#define MAX 100 // Định nghĩa hằng số MAX
+using namespace std; // Sử dụng không gian tên chuẩn
+
+int canh_81[MAX][2]; // Mảng lưu thông tin các cạnh
+int duyet_81[MAX]; // Mảng đánh dấu các đỉnh đã duyệt qua
+queue<int>queuuu_81;
+queue<int> queu_81[MAX]; // Mảng các queue lưu các đỉnh cần duyệt
+int target_81;
+int value_81;
+
+void searchHamiton_81(int n, int v) { // Hàm kiểm tra đồ thị có phải là đồ thị Hamilton hay không
+    int status = 1;
+    for (int i = 1; i <= v; i++) {
+        if (duyet_81[i] == 0) {
+            status = 0;
+        }
+    }
+    if (status == 1 && n == target_81) {
+        value_81 = 1;
+    }
+    queue<int>clone;
+    while (!queu_81[n].empty()) {
+        int j = queu_81[n].front();
+        clone.push(j);
+        if (duyet_81[j] == 0 || j == target_81) {
+            duyet_81[j] = 1;
+            searchHamiton_81(j, v);
+            duyet_81[j] = 0;
+        }
+        queu_81[n].pop();
+    }
+    queu_81[n] = clone;
+
+}
+
+int main() { // Hàm main 
+    int n;
+    string s;
+    getline(cin, s);
+    stringstream ss(s);
+    ss >> n;
+    for (int j = 0; j < n; j++) {//nhập đầu vào
+        string s2;
+        getline(cin, s2);
+        stringstream ss2(s2);
+        int v = 0;
+        int e = 0;
+        ss2 >> v >> e;
+        for (int i = 0; i < e; i++) {
+            string s1;
+            int a, b;
+            getline(cin, s1);
+            stringstream ss1(s1);
+            ss1 >> canh_81[i][0] >> canh_81[i][1];
+            queu_81[canh_81[i][0]].push(canh_81[i][1]);//đồ thị vô hướng nên thêm vào cạnh u->v và v->u
+            queu_81[canh_81[i][1]].push(canh_81[i][0]);
+
+        }
+
+        target_81 = 1;
+        duyet_81[1] = 1;
+        searchHamiton_81(target_81, v);
+        cout << value_81 << "\n";
+        value_81 = 0;
+        for (int i = 1; i <= v; i++) {//reset trạng thái của tất cả nút để sang trường hợp mới
+            queu_81[i] = queue<int>();
+            duyet_81[i] = 0;
+        }
+    }
+
+    return 0;
+
+}

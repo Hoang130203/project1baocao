@@ -1,0 +1,28 @@
+//JAVA
+//Mai Minh Hoang 20215381
+import java.util.*; 
+
+@SuppressWarnings({"unchecked", "deprecation"})
+public class Main { 
+	//hàm main để chạy chương trình
+    public static void main(String[] args) { 
+    	//khai báo sc81 để đọc dữ liệu từ bàn phím
+        Scanner sc81= new Scanner(System.in);
+        //biến s81 để lưu trữ kết quả cuối cùng
+		String s81="";
+		//mỗi khi còn có dòng kế tiếp
+		while(sc81.hasNext())
+		{
+			//biến ss81 để nhận giá trị từng dòng text và chuyển nó thành in hoa
+			String ss81=sc81.nextLine().toUpperCase();
+			//gắn thêm giá trị từng dòng vừa rồi vào kết quả cuối cùng và xuống hàng
+			s81+=ss81+'\n';
+			//nếu gặp phải dòng null(không còn bất kỳ giá trị nào nữa) thì kết thúc vòng lặp
+			if(ss81==null) {
+				break;
+			}
+		}
+		//in ra kết quả là văn bản đã in hoa
+		System.out.println(s81);
+    }
+}

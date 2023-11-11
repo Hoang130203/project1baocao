@@ -1,0 +1,60 @@
+//CPP 
+//Mai Minh Hoàng
+//20215381
+#include <bits/stdc++.h> 
+//Khai báo không gian tên
+using namespace std;
+//hàm kiểm tra ký tự có phải là số từ 0 tới 9 không
+bool check(char a_81)
+{
+    //nếu ký tự a_81 có số thứ tự lớn hơn hoặc bằng thứ tự của ký tự 0 và bé hơn bằng thứ tự ký tự 9 trong bảng mã
+    //Ascii thì trả về true
+    if (a_81 >= '0' && a_81 <= '9')return true;
+    //ngược lại trả về false
+    return false;
+}
+int main()
+{
+    //khai báo chuỗi s_81 chứa xâu cần định dạng
+    string s_81;
+    //nhập vào xâu
+    cin >> s_81;
+    //nếu xâu vừa nhập có độ dài khác 10 thì in ra INCORRECT
+    if (s_81.size() != 10) cout << "INCORRECT";
+    //nếu có độ dài là 10
+    else
+    {
+        //nếu ký tự thứ 4 hoặc thứ 7 trong xâu khác ký tự - thì in ra INCORRECT
+        if (s_81[4] != '-' || s_81[7] != '-')
+        {
+            cout << "INCORRECT";
+            return 0;
+        }
+        //duyệt qua tất cả ký tự trong xâu đã nhập
+        for (int i_81 = 0; i_81 < 10; i_81++)
+        {
+            //bỏ qua ký tự thứ 4 và 7 là ký tự -
+            if ((i_81 != 4) && (i_81 != 7))
+            {
+                //kiểm tra xem ký tự đó có phải là chữ số không
+                if (check(s_81[i_81]) == false)
+                {
+                    //nếu khác thì in ra INCORRECT
+                    cout << "INCORRECT";
+                    return 0;
+                }
+            }
+        }
+        //chuyển 4 ký tự đầu tiên của xâu thành 1 số 4 chữ số giá trị là năm 
+        int y_81 = (s_81[0] - '0') * 1000 + (s_81[1] - '0') * 100 + (s_81[2] - '0') * 10 + s_81[3] - '0';
+        //tương tự ở trên nhưng lấy ra tháng
+        int m_81 = (s_81[5] - '0') * 10 + s_81[6] - '0';
+        //tương tự ở trên và lấy ra ngày
+        int d_81 = (s_81[8] - '0') * 10 + s_81[9] - '0';
+        //nếu ngày có giá trị từ 1 tới 31 và tháng có giá trị từ 1 tới 12 thì in ra kết quả 
+        if (m_81 >= 1 && m_81 <= 12 && d_81 >= 1 && d_81 <= 31) cout << y_81 << " " << m_81 << " " << d_81;
+        //nếu ngày tháng không nằm trong các giá trị đúng ở trên thì in ra INCORRECT
+        else cout << "INCORRECT";
+    }
+    return 0;
+}

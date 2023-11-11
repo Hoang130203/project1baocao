@@ -1,0 +1,15 @@
+//CPP 
+//Mai Minh Hoàng
+//20215381
+#include <bits/stdc++.h> 
+//khai báo không gian tên biến
+using namespace std;
+int main() {
+	//khai báo 2 số a,b
+	int a_81, b_81;
+	//nhập a và b
+	cin >> a_81 >> b_81;
+	//in ra kết quả
+	cout << a_81 + b_81 << " " << a_81 - b_81 << " " << a_81 * b_81 << " " << a_81 / b_81;
+	return 0;
+}

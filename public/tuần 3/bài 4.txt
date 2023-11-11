@@ -1,0 +1,108 @@
+//Mai Minh Hoàng
+//20215381
+#include <bits/stdc++.h> 
+
+using namespace std;
+//tạo class chứa trạng thái của 2 bình nước
+class Jug_81 {
+public:
+    int a;
+    int b;
+    //hàm tạo
+    Jug_81(int a, int b) {
+        this->a = a;
+        this->b = b;
+    }
+};
+
+int A_81, B_81, c_81;//3 số đầu vào
+queue<Jug_81*> queu_81[700];//mảng các hàng đợi chứa trạng thái của 2 bình, chỉ số của mảng là số bước nhỏ nhất để tới trạng thái đó
+int dem_81 = 0;//đếm số bước nhỏ nhất
+int status_81[1000][1000];//mảng 2 chiều lưu trạng thái đã tồn tại của 2 bình nước
+
+queue<Jug_81*> createJug_81(Jug_81* jug) {//hàm tạo tất cả trạng thái con của trạng thái hiện tại
+    queue<Jug_81*> queuu_81;//hàng đợi để lưu các trạng thái con
+
+    if (status_81[A_81][jug->b] == 0) {//trạng thái con có thể thứ 1
+        queuu_81.push(new Jug_81(A_81, jug->b));
+        status_81[A_81][jug->b] = 1;
+    }
+    if (status_81[0][jug->b] == 0) {//trạng thái con có thể thứ 2
+        queuu_81.push(new Jug_81(0, jug->b));
+        status_81[0][jug->b] = 1;
+    }
+    if (status_81[jug->a][B_81] == 0) {//trạng thái con có thể thứ 3
+        queuu_81.push(new Jug_81(jug->a, B_81));
+        status_81[jug->a][B_81] = 1;
+    }
+    if (status_81[jug->a][0] == 0) {//trạng thái con có thể thứ 4
+        queuu_81.push(new Jug_81(jug->a, B_81));
+        status_81[jug->a][B_81] = 1;
+    }
+    if ((A_81 - jug->a) > jug->b) {//trạng thái con có thể thứ 5
+        if (status_81[jug->a + jug->b][0] == 0) {
+            queuu_81.push(new Jug_81(jug->a + jug->b, 0));
+            status_81[jug->a + jug->b][0] = 1;
+        }
+    }
+    if ((B_81 - jug->b) > jug->a) {//trạng thái con có thể thứ 6
+        if (status_81[0][jug->a + jug->b] == 0) {
+            queuu_81.push(new Jug_81(0, jug->a + jug->b));
+            status_81[0][jug->a + jug->b] = 1;
+        }
+    }
+    if ((A_81 - jug->a) < jug->b) {//trạng thái con có thể thứ 7
+        if (status_81[A_81][jug->b - (A_81 - jug->a)] == 0) {
+            queuu_81.push(new Jug_81(A_81, jug->b - (A_81 - jug->a)));
+            status_81[A_81][jug->b - (A_81 - jug->a)] = 1;
+        }
+    }
+    if ((B_81 - jug->b) < jug->a) {//trạng thái con có thể thứ 8
+        if (status_81[jug->a - (B_81 - jug->b)][B_81] == 0) {
+            queuu_81.push(new Jug_81(jug->a - (B_81 - jug->b), B_81));
+            status_81[jug->a - (B_81 - jug->b)][B_81] = 1;
+        }
+    }
+    return queuu_81;
+}
+//hàm để tìm theo chiều rộng
+void find_81(int step) {
+    if (queu_81[step].size() == 0) {//nếu bước này không có bất kỳ trạng thái chưa xét nào thì kết thúc,không tồn tại
+        cout << -1;
+        return;
+    }
+    while (!queu_81[step].empty()) {//khi trong hàng đợi còn có trạng thái chưa xét
+        Jug_81* j = queu_81[step].front();//lấy ra trạng thái trên cùng
+        if ((j->a == c_81) || (j->b == c_81)) {//nếu 1 trong 2 bình có giá trị mục tiêu 
+            if (dem_81 == 0) {//nếu trước đó chưa tìm được trạng thái nào
+                dem_81 = step;//đây là số bước cần đi
+            }
+        }
+        queu_81[step].pop();//dù thế nào cũng lấy khỏi hàng đợi
+        queue<Jug_81*> newq_81 = createJug_81(j);//tạo các trạng thái con của trạng thái nafy
+        while (newq_81.size() > 0) {//đệ quy với các trạng thái con
+            queu_81[step + 1].push(newq_81.front());
+            newq_81.pop();
+        }
+    }
+    if (dem_81 != 0) {
+        cout << dem_81;//in kết quả
+    }
+    else {
+        find_81(step + 1);
+    }
+}
+
+int main() {
+    cin >> A_81 >> B_81 >> c_81;//nhập
+    if (A_81 < B_81) {//để giá trị A luôn nhỏ hơn B để hạn chế số trường hợp ở hàm create
+        int temp_81 = A_81;
+        A_81 = B_81;
+        B_81 = temp_81;
+    }
+    Jug_81* root_81 = new Jug_81(0, 0);//trạng thái gốc
+    queu_81[0].push(root_81);
+    status_81[0][0] = 1;
+    find_81(0);//tìm và in
+    return 0;
+}

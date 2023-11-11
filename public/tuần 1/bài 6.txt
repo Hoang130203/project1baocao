@@ -1,0 +1,9 @@
+#PYTHON 
+#Mai Minh Hoàng
+#20215381
+#khai báo và nhập số nguyên n_81
+n_81=int(input())
+#duyệt tất cả các số nguyên từ 1 tới n
+for i_81 in range(1,n_81+1):
+    #in ra mỗi số đó và bình phương của nó
+    print(i_81,i_81**2)

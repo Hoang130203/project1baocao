@@ -1,0 +1,102 @@
+//Mai Minh Hoàng
+//20215381
+#include <bits/stdc++.h> 
+
+using namespace std;
+int n_81;             // Số lượng phần tử trong danh sách
+vector<int> listt_81; // Danh sách các phần tử
+
+int main() {
+    string t_81;
+    getline(cin, t_81);
+    stringstream ss_81(t_81);
+    ss_81 >> n_81;
+    string s_81;
+    for (int i_81 = 0; i_81 < n_81; i_81++) {//nhập danh sách ban đầu n phần tử
+        int ai_81;
+        cin >> ai_81;
+        listt_81.push_back(ai_81);
+    }
+    while (getline(cin, s_81)) {
+        if (s_81 == "#") { // Nếu gặp dấu #_81, kết thúc vòng lặp
+            break;
+        }
+        if (s_81.length() >= 5) {
+            if (s_81[0] == 'a') { // Xử lý lệnh 'add'
+                if (s_81[3] == 'l') {//add last
+                    stringstream ss_81(s_81);
+                    string act_81;
+                    int k_81;
+                    ss_81 >> act_81 >> k_81;
+                    auto iter_81 = find(listt_81.begin(), listt_81.end(), k_81);
+                    if (iter_81 == listt_81.end()) {
+                        listt_81.push_back(k_81);
+                    };
+                }
+                else if (s_81[3] == 'f') {//add  first
+                    stringstream ss_81(s_81);
+                    string act_81;
+                    int k_81;
+                    ss_81 >> act_81 >> k_81;
+                    auto iter_81 = find(listt_81.begin(), listt_81.end(), k_81);
+                    if (iter_81 == listt_81.end()) {
+                        listt_81.insert(listt_81.begin(), k_81);
+                    };
+                }
+                else if (s_81[3] == 'a') {//add after
+                    stringstream ss_81(s_81);
+                    string act_81;
+                    int u_81, v_81;
+                    ss_81 >> act_81 >> u_81 >> v_81;
+                    auto iter_81 = find(listt_81.begin(), listt_81.end(), u_81);
+                    auto iter1_81 = find(listt_81.begin(), listt_81.end(), v_81);
+                    if (iter_81 == listt_81.end() && iter1_81 != listt_81.end()) {
+                        for (int i_81 = 0; i_81 < listt_81.size(); i_81++) {
+                            if (listt_81[i_81] == v_81) {
+                                listt_81.insert(listt_81.begin() + (i_81 + 1), u_81);
+                            }
+                        }
+                    }
+                    else {
+                        continue;
+                    }
+                }
+                else {//add before
+                    stringstream ss_81(s_81);
+                    string act_81;
+                    int u_81, v_81;
+                    ss_81 >> act_81 >> u_81 >> v_81;
+                    auto iter_81 = find(listt_81.begin(), listt_81.end(), u_81);
+                    auto iter1_81 = find(listt_81.begin(), listt_81.end(), v_81);
+                    if (iter_81 == listt_81.end() && iter1_81 != listt_81.end()) {
+                        listt_81.insert(iter1_81, u_81);
+                    }
+                    else {
+                        continue;
+                    }
+                }
+            }
+            else if (s_81[2] == 'm') { // Xử lý lệnh 'remove'
+                stringstream ss_81(s_81);
+                string act_81;
+                int k_81;
+                ss_81 >> act_81 >> k_81;
+                auto iter_81 = find(listt_81.begin(), listt_81.end(), k_81);
+                if (iter_81 != listt_81.end()) {
+                    for (int i_81 = 0; i_81 < listt_81.size(); i_81++) {
+                        if (listt_81[i_81] == k_81) {
+                            listt_81.erase(listt_81.begin() + i_81);
+                        }
+                    }
+                }
+            }
+            else {
+                reverse(listt_81.begin(), listt_81.end()); // Xử lý lệnh 'reverse'
+            }
+        }
+    }
+    for (int i_81 = 0; i_81 < listt_81.size(); i_81++) {
+        cout << listt_81[i_81] << " ";
+    }
+    return 0;
+}

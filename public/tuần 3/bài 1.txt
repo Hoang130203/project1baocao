@@ -1,0 +1,33 @@
+//Mai Minh Hoàng 
+//20215381
+#include <bits/stdc++.h> 
+using namespace std;
+
+int main() {
+    stack<int> stacks; // Tạo một ngăn xếp (stack) chứa các số nguyên
+    string s; // Biến để lưu trữ dòng đầu vào
+
+    while (getline(cin, s)) { // Đọc dữ liệu dưới dạng dòng
+        if (s[0] == '#') {
+            break; // Nếu dòng bắt đầu bằng "#", kết thúc chương trình
+        }
+        if (s[0] == 'P' && s[1] == 'U') {//nếu lệnh là PUSH
+            stringstream ss(s); // Tạo một stringstream để phân tích chuỗi
+            string s1; 
+            int a; // Biến lưu trữ số nguyên
+            ss >> s1 >> a; // Đọc số nguyên từ chuỗi
+            stacks.push(a); // Thêm số nguyên vào ngăn xếp
+        }
+        else {
+            if (!stacks.empty()) {
+                cout << stacks.top() << "\n"; // In số ở đỉnh ngăn xếp
+                stacks.pop(); // Loại bỏ số ở đỉnh ngăn xếp
+            }
+            else {
+                cout << "NULL" << "\n"; // Nếu ngăn xếp rỗng, in "NULL"
+            }
+        }
+    }
+
+    return 0;
+}

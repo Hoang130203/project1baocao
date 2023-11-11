@@ -1,0 +1,57 @@
+//CPP 
+//Mai Minh Hoàng
+//20215381
+#include <bits/stdc++.h> 
+//khai báo không gian tên
+using namespace std;
+//hàm tính tổng tiền phải trả sau khi thay đổi cách tính tiền với tham số đầu vào n81 là số khw điện đã dùng
+float totalsau(int n81){
+    //với số kwh <=100 thì tính ra giá tiền phải trả sau khi đổi cách tính
+    if(n81<=100){
+        return (float)n81*1728*1.1;
+    //với số kwh <=200 và >100 thì tính ra giá tiền phải trả sau khi đổi cách tính
+    }else if(n81<=200){
+        return (float)(n81-100)*2074*1.1+totalsau(100);
+    //với số kwh <=400 và >200 thì tính ra giá tiền phải trả sau khi đổi cách tính
+    }else if(n81<=400){
+        return (float)(n81-200)*2612*1.1+totalsau(200);
+    //với số kwh <=700 và >400 thì tính ra giá tiền phải trả sau khi đổi cách tính
+    }else if(n81<=700){
+        return (float)(n81-400)*3111*1.1+totalsau(400);
+    //với số kwh >700 thì tính ra giá tiền phải trả sau khi đổi cách tính
+    }else{
+        return (float)(n81-700)*3457*1.1+totalsau(700);
+    }
+}
+//hàm tính tổng tiền phải trả trước khi thay đổi cách tính tiền với tham số đầu vào n81 là số khw điện đã dùng
+float totaltruoc(int n81){
+    //với số kwh <=50 thì tính ra giá tiền phải trả trước khi đổi cách tính
+     if(n81<=50){
+        return (float)n81*1728*1.1;
+    //với số kwh >50 và <=100 thì tính ra giá tiền phải trả trước khi đổi cách tính
+    }else if(n81<=100){
+        return (float)(n81-50)*1786*1.1+totaltruoc(50);
+    //với số kwh >100 và <=200 thì tính ra giá tiền phải trả trước khi đổi cách tính
+    }else if(n81<=200){
+        return (float)(n81-100)*2074*1.1+totaltruoc(100);
+    //với số kwh >200 và <=300 thì tính ra giá tiền phải trả trước khi đổi cách tính
+    }else if(n81<=300){
+        return (float)(n81-200)*2612*1.1+totaltruoc(200);
+    //với số kwh >300 và <=400 thì tính ra giá tiền phải trả trước khi đổi cách tính
+    }else if(n81<=400){
+        return (float)(n81-300)*2919*1.1+totaltruoc(300);
+    //với số kwh >400 thì tính ra giá tiền phải trả trước khi đổi cách tính
+    }else{
+        return (float)(n81-400)*3015*1.1+totaltruoc(400);
+    }
+}
+//hàm chính
+int main() 
+{ 
+//khai báo và nhập số kwh đã dùng
+    int n81;
+    cin>>n81;
+//in ra màn hình kết quả sau khi lấy giá tiền nếu tính cách tính mới trừ đi giá tiền nếu tính cách cũ
+    printf("%.2f",totalsau(n81)-totaltruoc(n81)); 
+    return 0;
+}

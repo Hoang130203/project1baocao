@@ -1,0 +1,48 @@
+//Mai Minh Hoàng
+//20215381
+#include <iostream> 
+#include <vector> 
+using namespace std; 
+
+const int MAXN_81 = 100000; // Định nghĩa hằng số MAXN_81
+
+vector<int> adj_81[MAXN_81]; // Khai báo mảng vector adj_81 để lưu danh sách kề
+bool visited_81[MAXN_81];   // Khai báo mảng visited_81 để đánh dấu các đỉnh đã duyệt qua
+
+void DFS_81(int u) { // Hàm DFS_81 để duyệt đồ thị theo chiều sâu
+    visited_81[u] = true; // Đánh dấu đỉnh u đã được duyệt
+    cout << u << " "; // In ra đỉnh u
+
+    for (int v : adj_81[u]) { // Duyệt qua các đỉnh kề với u
+        if (!visited_81[v]) { // Nếu đỉnh v chưa được duyệt
+            DFS_81(v); // Gọi hàm DFS_81 cho đỉnh v
+        }
+    }
+}
+
+int main() { // Hàm main - điểm bắt đầu của chương trình
+    int n, m; // Khai báo số lượng đỉnh và số lượng cạnh
+    cin >> n >> m; // Nhập số lượng đỉnh và số lượng cạnh
+
+    // Khởi tạo danh sách kề
+    for (int i = 0; i < m; i++) { // Duyệt qua từng cạnh
+        int u, v;
+        cin >> u >> v; // Nhập hai đỉnh u, v của cạnh
+        adj_81[u].push_back(v);
+        adj_81[v].push_back(u); // Vì đồ thị là vô hướng, nên cần thêm cả hai chiều u->v và v->u vào danh sách kề
+    }
+
+    // Khởi tạo mảng visited
+    for (int i = 1; i <= n; i++) {
+        visited_81[i] = false; // Ban đầu, tất cả các đỉnh đều chưa được duyệt qua
+    }
+
+    // Bắt đầu duyệt DFS từ một nút bất kỳ
+    for (int i = 1; i <= n; i++) {
+        if (!visited_81[i]) { // Nếu đỉnh i chưa được duyệt qua
+            DFS_81(i); // Gọi hàm DFS_81 cho đỉnh i
+        }
+    }
+
+    return 0; 
+}

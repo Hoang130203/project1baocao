@@ -1,0 +1,106 @@
+//Mai Minh Hoàng
+//20215381
+#include <bits/stdc++.h> 
+using namespace std;
+
+class FTree_81 {//lớp để lưu 1 người
+public:
+    string name_81;//tên
+    vector<FTree_81*> descendants_81;//con trực tiếp
+    FTree_81* parent_81;//cha mẹ (nếu có)
+    FTree_81(string name_81) {
+        this->name_81 = name_81;
+    }
+};
+
+vector<FTree_81*> Persons_81;//lưu tất cả người đã tồn tại từ lúc duyệt
+
+// Hàm tìm một người trong cây gia đình bằng tên
+FTree_81* findPerson_81(string name_81) {//tìm xem người đó tồn tại chưa
+    if (!Persons_81.empty()) {
+        for (int i = 0; i < Persons_81.size(); i++) {
+            if (Persons_81[i]->name_81 == name_81) {
+                return Persons_81[i];//nếu tồn tại thì trả về đối tượng chứa người đó
+            }
+        }
+    }
+    return NULL;
+}
+
+// Hàm đệ quy để đếm số người con
+int printDescentdants_81(FTree_81* p_81) {
+    int dem_81 = 0;
+    if (p_81->descendants_81.size() == 0 || p_81->descendants_81.empty()) {
+        return 1;
+    }
+    for (int i = 0; i < p_81->descendants_81.size(); i++) {
+        dem_81 = dem_81 + printDescentdants_81(p_81->descendants_81[i]);
+        if (p_81->descendants_81[i]->descendants_81.size() > 0) {
+            dem_81++;
+        }
+    }
+    return dem_81;
+}
+
+int maxs_81 = 0;
+
+// Hàm đệ quy để tìm số thế hệ tối đa
+void printGeneration_81(FTree_81* p_81, int j_81) {
+    if (p_81->descendants_81.size() == 0 || p_81->descendants_81.empty()) {
+        if (j_81 > maxs_81) {
+            maxs_81 = j_81;
+        }
+        return;
+    }
+    vector<FTree_81*> l_81;
+    for (int i = 0; i < p_81->descendants_81.size(); i++) {
+        printGeneration_81(p_81->descendants_81[i], j_81 + 1);
+    }
+}
+
+int main() {
+    string s_81;
+    while (getline(cin, s_81)) {//hàm nhập đầu vào
+        if (s_81 == "***") {//gặp dòng này thì dừng
+            break;
+        }
+        stringstream ss_81(s_81);//phân tách 1 dòng
+        string child_81;//tên con
+        string parent_81;//tên cha
+        ss_81 >> child_81 >> parent_81;
+
+        FTree_81* childd_81 = findPerson_81(child_81);//xem coi người này tồn tại chưa
+        FTree_81* parentt_81 = findPerson_81(parent_81);
+        if (childd_81 == NULL) {//nếu người có tên này chưa tồn tại thì tạo người mới
+            childd_81 = new FTree_81(child_81);
+            Persons_81.push_back(childd_81);//thêm vào vector
+        }
+        if (parentt_81 == NULL) {//nếu người có tên này chưa tồn tại thì tạo người mới
+            parentt_81 = new FTree_81(parent_81);
+            Persons_81.push_back(parentt_81);//thêm vào vector chứa tất cả mọi người
+        }
+        parentt_81->descendants_81.push_back(childd_81);//thêm đối tượng con vào vector các con của cha
+
+        childd_81->parent_81 = parentt_81;
+    }
+
+    while (getline(cin, s_81)) {//nhập vào các lệnh in
+        if (s_81 == "***") {
+            break;
+        }
+        string s1_81, s2_81;
+        stringstream ss_81(s_81);
+        ss_81 >> s1_81 >> s2_81;
+        FTree_81* p_81 = findPerson_81(s2_81);
+        if (s1_81.length() > 5) {
+            if (s1_81[0] == 'd') {
+                cout << printDescentdants_81(p_81) << "\n";
+            }
+            else {
+                printGeneration_81(p_81, 0);
+                cout << maxs_81 << "\n";
+            }
+        }
+    }
+    return 0;
+}

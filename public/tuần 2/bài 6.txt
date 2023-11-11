@@ -1,0 +1,81 @@
+//Mai Minh Hoàng
+//20215381
+#include <bits/stdc++.h> 
+using namespace std;
+int mang_81[9][9]; // Khai báo mảng hai chiều mang_81
+int dem_81=0; // Khai báo và khởi tạo biến đếm dem_81
+bool checkrow_81(int row_81,int i_81) { // Hàm checkrow_81 kiểm tra hàng row_81 có chứa số i_81 hay không
+	for (int k = 0; k < 9; k++) { // Duyệt qua từng phần tử của hàng
+		if (mang_81[row_81][k] == i_81) { // Nếu phần tử thứ k của hàng row_81 bằng i_81
+			return false; // Trả về false
+		}
+	}
+	return true; // Trả về true
+}
+bool checkcol_81(int col_81,int i_81){ // Hàm checkcol_81 kiểm tra cột col_81 có chứa số i_81 hay không
+	for (int k = 0; k < 9; k++) { // Duyệt qua từng phần tử của cột
+		if (mang_81[k][col_81] == i_81) { // Nếu phần tử thứ k của cột col_81 bằng i_81
+			return false; // Trả về false
+		}
+	}
+	return true; // Trả về true
+}
+bool check3x3_81(int col, int row, int i) { // Hàm check3x3 kiểm tra ô vuông 3x3 chứa ô (row, col) có chứa số i hay không
+	int startrow = 3 * (row / 3); // Tính chỉ số hàng đầu tiên của ô vuông 3x3
+	int startcol = 3 * (col / 3); // Tính chỉ số cột đầu tiên của ô vuông 3x3
+	for (int k = startrow; k < startrow + 3; k++) { // Duyệt qua từng hàng của ô vuông 3x3
+		for (int h = startcol; h < startcol + 3; h++) { // Duyệt qua từng cột của ô vuông 3x3
+			if (mang_81[k][h] == i) { // Nếu phần tử tại vị trí (k, h) bằng i
+				return false; // Trả về false
+			}
+		}
+	}
+	return true; // Trả về true
+}
+void total_81(int r,int c) {//Hàm đếm xem có bao nhiêu kết quả thỏa mãn
+	if (r == 8 && c == 8) {//nếu là phần tử cuối của bảng
+		for (int i = 1; i <= 9; i++) {
+			if (check3x3_81(c, r, i) && checkcol_81(c, i) && checkrow_81(r, i)) {
+				dem_81++;
+			}
+		}
+		return;
+	}
+	if (mang_81[r][c] == 0) {
+		for (int i = 1; i <= 9; i++) {
+			if (check3x3_81(c,r, i) && checkcol_81(c, i) && checkrow_81(r,i)) {
+				mang_81[r][c] = i;
+
+				if (c == 8) {
+					total_81(r + 1, 0);
+				}
+				else {
+					
+					 total_81(r, c + 1);
+				}
+				mang_81[r][c] = 0;
+			}
+			
+		}
+		
+	}
+	else {
+		if (c == 8) {
+			total_81(r + 1, 0);
+		}
+		else {
+		
+			total_81(r, c + 1);
+		}
+	}
+}
+int main() {
+	for (int i = 0; i < 9; i++) {
+		for (int j = 0; j < 9; j++) {
+			cin >> mang_81[i][j];//nhập ma trận ban đầu
+		}
+	}
+	total_81(0, 0);//bắt đầu đếm xem có bao nhiều trường hợp
+	cout << dem_81;//in ra kết quả
+	return 0;
+}

@@ -1,0 +1,79 @@
+//Mai Minh Hoàng
+//20215381
+#include <bits/stdc++.h> 
+using namespace std;
+
+// Định nghĩa lớp Node_81 đại diện cho một nút trong cây BST
+class Node_81
+{
+public:
+    int root_81;         // Giá trị của nút
+    Node_81 *leftNode_81;  // Con trái
+    Node_81 *rightNode_81; // Con phải
+    
+    // Constructor để khởi tạo một nút với giá trị root_81
+    Node_81(int root_81) {
+        this->root_81 = root_81;
+        this->leftNode_81 = NULL;
+        this->rightNode_81 = NULL;
+    }
+};
+
+// Hàm in ra giá trị của các nút trong cây theo thứ tự trước (pre-order)
+void printt(Node_81* node_81) {
+    cout << node_81->root_81; // In giá trị của nút
+    cout << " ";
+    if (node_81->leftNode_81 != NULL) {
+        printt(node_81->leftNode_81); // Gọi đệ quy để in nút con bên trái
+    }
+    if (node_81->rightNode_81 != NULL) {
+        printt(node_81->rightNode_81); // Gọi đệ quy để in nút con bên phải
+    }
+}
+
+// Hàm để chèn một nút node_81 vào cây BST với gốc là Root_81
+void insert(Node_81* node_81, Node_81* Root_81) {
+    if (Root_81 == NULL) {
+        Root_81 = node_81; // Nếu gốc là NULL, thì node_81 trở thành gốc
+        return;
+    }
+    if (node_81->root_81 == Root_81->root_81) {
+        return; // Không chèn nếu giá trị đã tồn tại
+    }
+    if (node_81->root_81 < Root_81->root_81) {
+        if (Root_81->leftNode_81) {
+            insert(node_81, Root_81->leftNode_81); // Gọi đệ quy để chèn vào cây con trái
+        }
+        else {
+            Root_81->leftNode_81 = node_81; // Chèn nút vào cây con trái
+        }
+    }
+    else {
+        if (Root_81->rightNode_81) {
+            insert(node_81, Root_81->rightNode_81); // Gọi đệ quy để chèn vào cây con phải
+        }
+        else {
+            Root_81->rightNode_81 = node_81; // Chèn nút vào cây con phải
+        }
+    }
+    return;
+}
+
+int main()
+{
+    vector<Node_81*> vtr_81;
+    string n_81;
+    getline(cin, n_81);
+    Node_81* rootNode_81 = new Node_81(stoi(n_81.substr(7))); // Khởi tạo gốc của cây
+    vtr_81.insert(vtr_81.begin(), rootNode_81);
+    while (getline(cin, n_81)) {
+        if (n_81 == "#") {
+            break;
+        }
+        Node_81* node_81 = new Node_81(stoi(n_81.substr(7))); // Tạo một nút mới với giá trị từ đầu vào
+        insert(node_81, rootNode_81); // Chèn nút mới vào cây BST
+    }
+    printt(rootNode_81); // In ra giá trị của cây BST theo thứ tự trước
+
+    return 0;
+}

@@ -1,0 +1,126 @@
+//Mai Minh Hoàng
+//20215381
+#include <bits/stdc++.h> 
+using namespace std;
+
+class Node_81 {//lớp Node chứa từng nút trên cây
+public:
+    int key_81;//giá trị của nó
+    Node_81* child_81;//con đầu tiên của nó nếu có
+    Node_81* right_81;//anh em của nó nếu nó là con đầu tiên
+    Node_81(int key_81) {
+        this->key_81 = key_81;
+        this->child_81 = NULL;
+        this->right_81 = NULL;
+    }
+};
+
+Node_81* root_81;//nút gốc
+map<int, Node_81*> maps_81;//tạo map để lưu khóa và giá trị không bị trùng và tiện kiểm tra tồn tại chưa
+
+// Hàm chèn một nút mới
+void insert_81(int u_81, int v_81) {
+    auto it_81 = maps_81.find(u_81);//iterator để kiếm 1 khóa
+    auto it1_81 = maps_81.find(v_81);
+    if (it_81 != maps_81.end() || it1_81 == maps_81.end()) {
+        return; // Nếu nút u_81 đã tồn tại hoặc nút v_81 không tồn tại, không chèn nút mới.
+    }
+    Node_81* node_81 = new Node_81(u_81);
+    if (it1_81->second->child_81 != NULL) {//nếu nút con của nó tồn tại
+        Node_81* temp_81 = it1_81->second->child_81;
+        while (true) {//thêm vào cuối danh sách con của nó
+            if (temp_81->right_81 != NULL) {
+                temp_81 = temp_81->right_81;
+            }
+            else {
+                temp_81->right_81 = node_81; // Chèn nút u_81 vào danh sách các nút con của nút v_81.
+                break;
+            }
+        }
+    }
+    else {
+        it1_81->second->child_81 = node_81;//nếu chưa tồn tại thi node_81 là nút con đầu
+    }
+    maps_81.insert({ u_81, node_81 });
+}
+
+// Hàm thực hiện duyệt cây theo thứ tự trước (PreOrder)
+void preOrder_81(Node_81* node_81) {
+    if (node_81 == NULL) return; // Nếu nút là NULL, thoát khỏi hàm.
+    cout << node_81->key_81 << " "; // In ra giá trị của nút.
+    Node_81* clone_81 = node_81->child_81; // Xem xét nút con đầu tiên.
+
+    while (clone_81 != NULL) {
+        preOrder_81(clone_81); // Tiếp tục duyệt cây trở lên nút con.
+        clone_81 = clone_81->right_81; // Di chuyển đến nút con kế tiếp trong danh sách nút con.
+    }
+}
+
+// Hàm thực hiện duyệt cây theo thứ tự giữa (InOrder)
+void inOrder_81(Node_81* node_81) {
+    if (node_81 == NULL) return; // Nếu nút là NULL, thoát khỏi hàm.
+    Node_81* clone_81 = node_81->child_81;
+    if (clone_81 != NULL) {
+        inOrder_81(clone_81); // Tiếp tục duyệt cây vào nút con đầu tiên.
+    }
+
+    cout << node_81->key_81 << " "; // In ra giá trị của nút.
+
+    while (clone_81 != NULL && clone_81->right_81 != NULL) {
+        clone_81 = clone_81->right_81; // Di chuyển đến nút con kế tiếp trong danh sách nút con.
+        inOrder_81(clone_81); // Tiếp tục duyệt cây trở lên nút con.
+    }
+}
+
+// Hàm thực hiện duyệt cây theo thứ tự sau (PostOrder)
+void postOrder_81(Node_81* node_81) {
+    if (node_81 == NULL) return; // Nếu nút là NULL, thoát khỏi hàm.
+    Node_81* clone_81 = node_81->child_81;
+    while (clone_81 != NULL) {
+        postOrder_81(clone_81); // Tiếp tục duyệt cây trở lên nút con.
+        clone_81 = clone_81->right_81; // Di chuyển đến nút con kế tiếp trong danh sách nút con.
+    }
+    cout << node_81->key_81 << " "; // In ra giá trị của nút.
+}
+
+int main() {
+    string s_81;
+
+    while (getline(cin, s_81)) {
+        if (s_81 == "*") {
+            break;
+        }
+        if (s_81[0] == 'M') {
+            stringstream ss_81(s_81);
+            string a_81;
+            int b_81;
+            ss_81 >> a_81 >> b_81;
+            root_81 = new Node_81(b_81);
+            maps_81.insert({ b_81, root_81 });
+        }
+        else if (s_81[0] == 'P') {
+            if (s_81[1] == 'r') {
+                preOrder_81(root_81); // Thực hiện duyệt cây theo thứ tự trước và in ra.
+                cout << "\n";
+            }
+            
+            else {
+                postOrder_81(root_81); // Thực hiện duyệt cây theo thứ tự sau và in ra.
+                cout << "\n";
+            }
+        }
+        else if (s_81[0] == 'I' && s_81[2] == 'O') {
+            inOrder_81(root_81); // Thực hiện duyệt cây theo thứ tự giữa và in ra.
+            cout << "\n";
+        }
+        
+        else {
+            stringstream ss_81(s_81);
+            string a_81;
+            int b_81, c_81;
+            ss_81 >> a_81 >> b_81 >> c_81;
+            insert_81(b_81, c_81); // Thêm một nút mới và kết nối nút con với nút cha.
+        }
+    }
+    return 0;
+}

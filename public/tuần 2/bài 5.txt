@@ -1,0 +1,33 @@
+//Mai Minh Hoàng
+//20215381
+#include <bits/stdc++.h> 
+using namespace std; 
+#define N_81 20 // Định nghĩa hằng số N_81
+int mang_81[N_81]; // Khai báo mảng một chiều mang_81
+int ktra_81[N_81]; // Khai báo mảng một chiều ktra_81
+void printt_81(int k_81, int n_81) { // Hàm printt_81 in ra tất cả các hoán vị của n phần tử
+	if (k_81 == n_81) { // Trường hợp cơ sở
+		for (int i = 0; i < n_81; i++) { // Duyệt qua từng phần tử của mảng
+			cout << mang_81[i]<<" "; // In ra giá trị của phần tử thứ i
+		}
+		cout << endl; // Xuống dòng
+		return; // Kết thúc hàm
+	}
+	for (int i = 1; i <= n_81; i++) { // Duyệt qua từng giá trị có thể của phần tử thứ k_81
+		if (ktra_81[i] == 0) { // Nếu giá trị chưa được sử dụng
+			mang_81[k_81] = i; // Gán giá trị cho phần tử thứ k_81
+			ktra_81[i] = 1; // Đánh dấu giá trị đã được sử dụng
+			printt_81(k_81 + 1,  n_81); // Gọi đệ quy hàm printt với k tăng lên 1 đơn vị
+			ktra_81[i] = 0; // Bỏ đánh dấu giá trị đã được sử dụng
+		}
+		else {
+			continue; // Bỏ qua lần lặp hiện tại và tiếp tục với lần lặp tiếp theo
+		}
+	}
+}
+int main() {
+	int n_81;
+	cin >>  n_81; // Nhập giá trị từ bàn phím
+	printt_81(0,  n_81); // Gọi hàm printt để in ra tất cả các hoán vị của n phần tử
+	return 0; 
+}

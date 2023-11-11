@@ -1,0 +1,54 @@
+//C++ 
+//Mai Minh Hoàng
+//20215381
+#include <bits/stdc++.h> 
+using namespace std;
+
+stack<char> stacks_81; // Tạo một ngăn xếp (stack) chứa các ký tự
+bool check_81(char t) {//hàm kiểm tra xem các ngoặc có đóng đúng không
+    if (stacks_81.top() == '(' && t == ')') {//kiểm tra nếu t là )
+        return true;
+    }
+    if (stacks_81.top() == '[' && t == ']') {//kiểm tra nếu t là ]
+        return true;
+    }
+    if (stacks_81.top() == '{' && t == '}') {//kiểm tra nếu t là }
+        return true;
+    }
+    return false;
+}
+
+int main() {
+    string s_81; // Biến để lưu trữ chuỗi ký tự đầu vào 
+    cin >> s_81;
+    int j_81 = 1; // Biến kiểm tra tính hợp lệ của dãy ký tự với 1 là đúng 0 là sai
+    //nếu số ngoặc trong dãy là lẻ thì sai
+    if (s_81.length() % 2 == 1) {
+        j_81 = 0;
+    }
+    else {
+        for (int i_81 = 0; i_81 < s_81.length(); i_81++) {
+            if (s_81[i_81] == ')' || s_81[i_81] == '}' || s_81[i_81] == ']') {//nếu ký tự đang xét là ngoặc đóng
+                if (check_81(s_81[i_81])) {//nếu ngoặc đóng đúng thì đưa ngoặc mở của nó ra khỏi stack
+                    if (stacks_81.empty()) {
+                        j_81 = 0;
+                    }
+                    stacks_81.pop();
+                }
+                else {
+                    j_81 = 0;//ngược lại thì sai
+                }
+            }
+            else {
+                stacks_81.push(s_81[i_81]);//nếu là ngoặc mở thì thêm vào stack
+            }
+        }
+    }
+
+    if (stacks_81.size() > 0) {//nếu kết thúc mà stack còn ngoặc thì sai
+        j_81 = 0;
+    }
+
+    cout << j_81; // In kết quả kiểm tra tính hợp lệ
+    return 0;
+}

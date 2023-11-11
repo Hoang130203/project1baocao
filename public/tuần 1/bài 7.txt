@@ -1,0 +1,37 @@
+//CPP 
+//Mai Minh Hoàng
+//20215381
+#include <bits/stdc++.h>
+//khai báo không gian tên
+using namespace std;
+int main()
+{
+	//khai báo số phần tử 
+	int n_81;
+	//biến để lưu số phần tử là số lẻ
+	int le_81=0;
+	//biến để lưu số phần tử là số chẵn
+	int chan_81 = 0;
+	//nhập số phần tử
+	cin >> n_81;
+	//khai báo mảng để chứa n_81 phần tử
+	long *m_81 = new long[n_81];
+	//nhập lần lượt n_81 phần tử vào mảng m_81
+	for (int i_81 = 0; i_81 < n_81; i_81++) {
+		cin >> m_81[i_81];
+	}
+	//duyệt qua tất cả phần tử đã nhập
+	for (int i_81 = 0; i_81 < n_81; i_81++) {
+		//nếu là số chẵn thì chan_81 cộng thêm 1
+		if (m_81[i_81] % 2 == 0) {
+			chan_81 += 1;
+		}
+		//nếu là số lẻ thì le_81 cộng thêm 1
+		else {
+			le_81 += 1;
+		}
+	}
+	//in ra số phần tử là số chẵn và số phần tử là số lẻ
+	cout << le_81 << " " << chan_81;
+	return 0;
+}

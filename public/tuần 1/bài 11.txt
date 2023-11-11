@@ -1,0 +1,93 @@
+//CPP 
+//Mai Minh Hoàng
+//20215381
+#include <bits/stdc++.h> 
+#include <vector>   // Sử dụng để làm việc với vector.
+#include <sstream>  // Sử dụng để thực hiện phân tích cú pháp chuỗi.
+
+using namespace std; // Sử dụng không gian tên
+
+int sum_81(const vector<int>& mang_81) {
+    int s_81 = 0;
+    for (int i_81 : mang_81) {
+        s_81 += i_81;
+    }
+    return s_81;
+}
+
+int findMaxSegment_81(const vector<int>& mang_81, int start_81, int end_81) {
+    int max_81 = mang_81[start_81 - 1];
+    for (int i_81 = start_81 - 1; i_81 < end_81; i_81++) {
+        if (mang_81[i_81] > max_81) {
+            max_81 = mang_81[i_81];
+        }
+        else {
+            continue;
+        }
+    }
+    return max_81;
+}
+
+int main() {
+    int n_81;
+    cin >> n_81; // Nhập số lượng phần tử trong vector.
+
+    int max_81 = -100; // Khởi tạo max_81 với giá trị ban đầu.
+    int min_81 = 100;  // Khởi tạo min_81 với giá trị ban đầu.
+    vector<int> mang_81; // Khởi tạo vector mang_81 để lưu trữ các số nguyên.
+
+    for (int i_81 = 0; i_81 < n_81; i_81++) {
+        int t_81;
+        cin >> t_81; // Nhập từng phần tử của vector mang_81.
+        mang_81.push_back(t_81); // Thêm phần tử vào vector.
+
+        // Tìm giá trị lớn nhất và nhỏ nhất trong vector mang_81.
+        if (t_81 > max_81) {
+            max_81 = t_81;
+        }
+        if (t_81 < min_81) {
+            min_81 = t_81;
+        }
+    }
+
+    vector<string> lists; // Khởi tạo vector để lưu trữ danh sách các lệnh.
+
+    while (true) {
+        string s;
+        getline(cin, s); // Đọc một dòng từ đầu vào.
+
+        if (s == "*" || s.empty()) {
+            continue; // Nếu dòng là "*" hoặc rỗng, tiếp tục vòng lặp.
+        }
+        else if (s == "***") {
+            break; // Nếu dòng là "***", thoát khỏi vòng lặp.
+        }
+
+        lists.push_back(s); // Thêm dòng vào danh sách lệnh.
+    }
+
+    for (const string& s : lists) {
+
+        if (s == "find-max") {
+            cout << max_81 << endl; // In ra giá trị lớn nhất trong vector mang_81.
+        }
+        else if (s == "find-min") {
+            cout << min_81 << endl; // In ra giá trị nhỏ nhất trong vector mang_81.
+        }
+        //tìm xem xâu s có chứa "find-max-segment" không, nếu khong có nó sẽ trả lại số nguyên lớn nhất có thể
+        else if (s.find("find-max-segment") < 999999) {
+            //khởi tạo đối tượng để từ find-max-segment a b tách ra a và b là start và end 
+            istringstream iss(s);
+            string cmd;
+            int start, end;
+            //lấy ra giá trị
+            iss >> cmd >> start >> end;
+            cout << findMaxSegment_81(mang_81, start, end) << endl; // Gọi hàm để tìm giá trị lớn nhất trong một đoạn của vector mang_81.
+        }
+        else if (s == "sum") {
+            cout << sum_81(mang_81) << endl; // In ra tổng các phần tử trong vector mang_81.
+        }
+    }
+
+    return 0;
+}

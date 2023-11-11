@@ -1,0 +1,35 @@
+//C++ 
+//Mai Minh Hoàng
+//20215381
+#include <bits/stdc++.h> 
+
+using namespace std;
+
+int main() {
+    queue<int> queues_81; // Tạo một hàng đợi (queue) chứa các số nguyên
+    string s_81; // Biến để lưu trữ dòng đầu vào
+
+    while (getline(cin, s_81)) { // Đọc dữ liệu dạng dòng
+        if (s_81[0] == '#') {
+            break; // Nếu dòng bắt đầu bằng "#", kết thúc chương trình
+        }
+        if (s_81[0] == 'P' && s_81[1] == 'U') {
+            stringstream ss_81(s_81); // Tạo một stringstream để phân tích chuỗi
+            string s1_81; // Biến lưu trữ từ "PUSH" trong dòng
+            int a_81; // Biến lưu trữ số nguyên
+            ss_81 >> s1_81 >> a_81; // Đọc số nguyên từ chuỗi
+            queues_81.push(a_81); // Thêm số nguyên vào hàng đợi
+        }
+        else {
+            if (!queues_81.empty()) {
+                cout << queues_81.front() << "\n"; // In số ở đầu hàng đợi
+                queues_81.pop(); // Loại bỏ số ở đầu hàng đợi
+            }
+            else {
+                cout << "NULL" << "\n"; // Nếu hàng đợi rỗng, in "NULL"
+            }
+        }
+    }
+
+    return 0;
+}

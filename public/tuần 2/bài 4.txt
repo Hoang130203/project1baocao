@@ -1,0 +1,44 @@
+//Mai Minh Hoàng
+//20215381
+#include <bits/stdc++.h>
+using namespace std;
+
+#define N_81 20 // Định nghĩa hằng số N_81
+
+int mang_81[N_81]; // Khai báo mảng mang_81 với kích thước N_81 
+int maxs_81 = -1; // Khai báo biến maxs_81 và gán giá trị ban đầu là -1 
+
+// Hàm printt_81 để in ra các số nhị phân có độ dài n_81
+void printt_81(int k_81, int n_81) {
+	if (k_81 == n_81) { // Nếu đã đủ n_81 chữ số
+		int s_81 = 0;
+		// Tính giá trị của số nhị phân hiện tại
+		for (int i_81 = 0; i_81 < n_81; i_81++) {
+			s_81 += mang_81[i_81] * pow(2, n_81 - i_81 - 1);
+		}
+		if (s_81 > maxs_81) { // Nếu giá trị mới lớn hơn giá trị lớn nhất đã thấy
+			for (int i_81 = 0; i_81 < n_81; i_81++) {
+				cout << mang_81[i_81]; // In ra số nhị phân
+			}
+			cout << endl;
+			maxs_81 = s_81; // Cập nhật giá trị lớn nhất
+		}
+		return;
+	}
+	for (int i_81 = 0; i_81 <= 1; i_81++) { // Duyệt qua cả hai giá trị 0 và 1
+		if (mang_81[k_81 - 1] != 1 || i_81 != 1) {
+			mang_81[k_81] = i_81;
+		}
+		else {
+			mang_81[k_81] = 0;
+		}
+		printt_81(k_81 + 1, n_81); // Gọi đệ quy để xây dựng số nhị phân tiếp theo
+	}
+}
+
+int main() {
+	int n_81;
+	cin >> n_81; // Nhập độ dài của số nhị phân
+	printt_81(0, n_81); // Gọi hàm để in ra tất cả các số nhị phân có độ dài n_81
+	return 0;
+}

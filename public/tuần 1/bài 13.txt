@@ -1,0 +1,32 @@
+//JAVA 
+//Mai Minh Hoàng
+//20215381
+import java.util.*; 
+
+@SuppressWarnings({"unchecked", "deprecation"})
+public class Main { 
+    public static void main(String[] args) { 
+        //khai báo biến sc_81 để nhập dữ liệu
+    	Scanner sc_81=new Scanner(System.in);
+    	//khai báo biến để lưu tổng số từ
+    	int dem_tong_81=0;
+    	//lặp cho tới khi không còn dòng nào
+    	  while (sc_81.hasNextLine()) {
+    		  //s_81 là dòng tiếp theo để xét xem có chứa bao nhiêu từ
+              String s_81 = sc_81.nextLine();
+              //tách nó thành mảng các xâu là các từ
+              String[] allWords_81 = s_81.split(" ");
+              //lặp qua các phần tử trong mảng
+              for (String word : allWords_81) {
+            	  //nếu nó không rỗng(không phải ký tự space hoặc tab) thì biến dem_tong_81 cộng thêm 1
+                  if (!word.isEmpty()) {
+                      dem_tong_81++;
+                  }
+              }
+          }
+    	  //in ra kết quả
+          System.out.println(dem_tong_81);
+          //đóng nhập dữ liệu
+          sc_81.close();
+    }
+}
