@@ -5,7 +5,7 @@ import ReactPDF, { PDFViewer, StyleSheet, Text, View } from '@react-pdf/renderer
 import MyDocument from './MyDocument';
 import { useDebounceCallback } from '@react-pdf-viewer/core';
 import axios from 'axios';
-
+import { Prism as SyntaxHightlighter } from 'react-syntax-highlighter';
 const styles = StyleSheet.create({
     page: {
         flexDirection: 'row',
@@ -121,6 +121,8 @@ const weeks = [
     },
 ];
 function App() {
+    const [divWidth, setDivWidth] = useState(null);
+
     const [week, setWeek] = useState(weeks[0]);
     const [question, setQuestion] = useState({});
     const [baocao, setBaocao] = useState();
@@ -256,10 +258,16 @@ function App() {
                     <Grid item xs={12} md={8} style={{ border: '1px solid #333', height: '0px', width: '800px' }} />
 
                     {week && question.name == 'báo cáo' && clicked ? (
-                        <Grid item xs={12} md={8} overflow="auto">
+                        <Grid
+                            item
+                            xs={12}
+                            md={8}
+                            overflow="auto"
+                            ref={(divElement) => divElement && setDivWidth(divElement.offsetWidth)}
+                        >
                             <div
                                 style={{
-                                    width: '800px',
+                                    width: '100%',
                                     height: '750px',
                                     overflow: 'auto',
                                     borderLeft: '1px solid #ccc',
@@ -273,6 +281,7 @@ function App() {
                                                 renderTextLayer={false}
                                                 key={`page_${index + 1}`}
                                                 pageNumber={index + 1}
+                                                width={divWidth * 0.95}
                                             />
                                         );
                                     })}
@@ -281,7 +290,7 @@ function App() {
                         </Grid>
                     ) : question && question.name != 'báo cáo' && clicked2 ? (
                         <Grid item xs={12} md={8} overflow="auto">
-                            <pre>{file}</pre>
+                            <SyntaxHightlighter language="cpp">{file}</SyntaxHightlighter>
                         </Grid>
                     ) : loading ? (
                         <CircularProgress />
