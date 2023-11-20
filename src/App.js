@@ -158,7 +158,9 @@ function App() {
     }
     const [loading, setLoading] = useState(false);
     useEffect(() => {
-        show();
+        if (question && question.name != 'báo cáo') {
+            show();
+        }
     }, [baocao]);
     const show = () => {
         setLoading(true);
