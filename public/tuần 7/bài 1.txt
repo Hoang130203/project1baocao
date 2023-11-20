@@ -1,0 +1,129 @@
+//Mai Minh Hoàng
+//20215381
+#include <iostream> 
+#include<sstream> 
+#include<vector> 
+#include<set> 
+#include<map> 
+#include<unordered_map> 
+using namespace std; 
+
+class Giaodich_81 // Định nghĩa lớp Giaodich_81
+{
+public:
+    string from_81; // Khai báo biến chuỗi from_81
+    string to_81; // Khai báo biến chuỗi to_81
+    long money_81; // Khai báo biến dài money_81
+    string date_81; // Khai báo biến chuỗi date_81
+    string atm_81; // Khai báo biến chuỗi atm_81
+    Giaodich_81(string from_81, string to_81, long money_81, string date_81, string atm_81) {
+        this->atm_81 = atm_81; // Gán giá trị cho atm_81
+        this->from_81 = from_81; // Gán giá trị cho from_81
+        this->to_81 = to_81; // Gán giá trị cho to_81
+        this->money_81 = money_81; // Gán giá trị cho money_81
+        this->date_81 = date_81; // Gán giá trị cho date_81
+    }
+};
+vector<Giaodich_81> listGiaodich_81; // Khai báo vector chứa các đối tượng Giaodich_81
+set<string> listAccount_81; // Khai báo set chứa các tài khoản
+unordered_map<string, long> totalmoney_81; // Khai báo unordered_map chứa tổng số tiền
+int dem_81 = 0; // Khai báo biến đếm
+
+map<string, bool> visited_81; // Khai báo map chứa trạng thái đã thăm của các tài khoản
+void find_cycle_from_81(string targetAccount_81, string account2_81, int n_81, int i_81) {
+    //tìm chu trình bắt đầu từ tài khoản tùy ý
+    if (i_81 == n_81) {
+        if (account2_81 == targetAccount_81) {
+            dem_81 = 1;//nếu mục tiêu được tìm thấy và thỏa mãn số bước thì dem_81 bằng 1
+            return;
+        }
+        else {
+            return;
+        }
+    }
+    for (const Giaodich_81& gd_81 : listGiaodich_81) {//duyệt các đỉnh khác trong đồ thị giao dịch để tìm đỉnh tiếp theo
+
+        if (gd_81.from_81 == account2_81 && !visited_81[gd_81.to_81]) {
+            visited_81[gd_81.to_81] = true;//đánh dấu đã thăm
+            find_cycle_from_81(targetAccount_81, gd_81.to_81, n_81, i_81 + 1);//duyệt tiếp bằng DFS
+            visited_81[gd_81.to_81] = false;//xóa dấu đã thăm
+        }
+        else {
+            continue;
+        }
+        if (dem_81 == 1) {//dem_81 =1 thì dừng lại để tiết kiệm tài nguyên
+            return;
+        }
+    }
+    return;
+}
+int main()
+{
+    ios_base::sync_with_stdio(0); // Tắt đồng bộ giữa C và C++
+
+    string s_81; // Khai báo biến chuỗi s_81
+
+    string s1_81 = "?number_transactions"; // Khai báo chuỗi s1_81
+    string s2_81 = "?total_money_transaction"; // Khai báo chuỗi s2_81
+    string s3_81 = "?list_sorted_accounts"; // Khai báo chuỗi s3_81
+    string s4_81 = "?total_money_transaction_from"; // Khai báo chuỗi s4_81
+    long totalMoney_81 = 0; // Khai báo biến tổng số tiền
+    long numberTransaction_81 = 0; // Khai báo biến số giao dịch
+    while (getline(cin, s_81)) {//nhập dữ liệu
+        if (s_81 == "#") {//gặp # thì dừng
+            break;
+        }
+        stringstream ss_81(s_81); // Khai báo đối tượng stringstream
+        string from_81; // Khai báo biến chuỗi from_81
+        string to_81; // Khai báo biến chuỗi to_81
+        long money_81; // Khai báo biến dài money_81
+        string date_81; // Khai báo biến chuỗi date_81
+        string atm_81; // Khai báo biến chuỗi atm_81
+        ss_81 >> from_81 >> to_81 >> money_81 >> date_81 >> atm_81; // Đọc dữ liệu từ ss_81
+        listGiaodich_81.push_back(Giaodich_81(from_81, to_81, money_81, date_81, atm_81)); // Thêm đối tượng Giaodich_81 vào listGiaodich_81
+        listAccount_81.insert(from_81); // Thêm from_81 vào listAccount_81
+        listAccount_81.insert(to_81); // Thêm to_81 vào listAccount_81
+        totalMoney_81 = totalMoney_81 + money_81; // Cập nhật totalMoney_81
+        numberTransaction_81++; // Tăng numberTransaction_81
+        visited_81.insert(make_pair(from_81, false)); // Thêm cặp (from_81, false) vào visited_81
+        visited_81.insert(make_pair(to_81, false)); // Thêm cặp (to_81, false) vào visited_81
+        totalmoney_81[from_81] += money_81; // Cập nhật totalmoney_81
+    }
+
+    while (getline(cin, s_81)) {//nhập dữ liệu
+        if (s_81 == "#") {//gặp # thì dừng
+            break;
+        }
+
+
+        if (s_81 == s1_81) {
+            cout << numberTransaction_81 << "\n"; // In ra số giao dịch
+        }
+        else if (s_81 == s2_81) {
+            cout << totalMoney_81 << "\n"; // In ra tổng số tiền
+        }
+        else if (s_81 == s3_81) {
+            for (string account_81 : listAccount_81) {
+                cout << account_81 << " "; // In ra danh sách tài khoản
+            }
+            cout << "\n";
+        }
+        else if (s_81.find(s4_81) != -1) {
+            stringstream ss2_81(s_81); // Khai báo đối tượng stringstream
+            string s4_81, s5_81;
+            ss2_81 >> s4_81 >> s5_81; // Đọc dữ liệu từ ss2_81
+
+            cout << totalmoney_81[s5_81] << "\n"; // In ra tổng số tiền giao dịch từ s5_81
+        }
+        else {
+            stringstream ss2_81(s_81); // Khai báo đối tượng stringstream
+            string s4_81, s5_81;
+            int n_81;
+            ss2_81 >> s4_81 >> s5_81 >> n_81; // Đọc dữ liệu từ ss2_81
+            find_cycle_from_81(s5_81, s5_81, n_81, 0); // Tìm chu trình từ s5_81
+            cout << ((dem_81 == 1) ? 1 : 0) << "\n"; // In ra kết quả
+            dem_81 = 0; // Đặt lại dem_81
+        }
+    }
+    return 0; // Kết thúc chương trình
+}

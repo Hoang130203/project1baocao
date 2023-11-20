@@ -1,0 +1,99 @@
+//Mai Minh Hoàng
+//20215381
+#include <iostream>
+#include<set>
+#include<sstream>
+#include<unordered_map>
+#include<vector>
+
+using namespace std;
+
+long countSubmit_81 = 0; // Biến đếm tổng số lượng bài nộp
+long sumtotalError_81 = 0; // Biến đếm tổng số lỗi
+unordered_map<string, long> totalError_81; // Bản đồ lưu tổng số lỗi theo người dùng
+unordered_map<string, int > totalUser_Problem_point_81; // Bản đồ lưu tổng điểm theo người dùng và vấn đề
+unordered_map<string, long> total_point_81; // Bản đồ lưu tổng điểm theo người dùng
+long time_submit_81[86400]; // Mảng lưu thời gian nộp
+
+int main()
+{
+	ios_base::sync_with_stdio(0);//tắt đồng bộ
+	string s;
+	while (getline(cin, s)) {//nhập đầu vào
+		if (s == "#") {//gặp # thì dừng
+			break;
+		}
+		stringstream ss(s); // phân tách mỗi dòng
+		string UserId;
+		string Problem;
+		long point;
+		string Status;
+		string Time;
+		ss >> UserId >> Problem >> Time >> Status >> point;
+
+		countSubmit_81++; // Tăng biến đếm tổng số lượng bài nộp
+		if (Status == "ERR") {
+			sumtotalError_81++; // Tăng biến đếm tổng số lỗi
+			totalError_81[UserId]++; // Tăng số lỗi của người dùng
+		}
+		totalError_81[Status] += point; // Cập nhật điểm lỗi
+		if (point > totalUser_Problem_point_81[UserId + Problem]) {
+			total_point_81[UserId] += point - totalUser_Problem_point_81[UserId + Problem]; // Cập nhật tổng điểm
+			totalUser_Problem_point_81[UserId + Problem] = point; // Cập nhật điểm của người dùng và vấn đề
+		}
+		//tách giờ phút giây từ Time
+		int h = stoi(Time.substr(0, 2));
+		int m = stoi(Time.substr(3, 5));
+		int sss = stoi(Time.substr(6));
+		time_submit_81[h * 60 * 60 + m * 60 + sss] += 1; // Cập nhật thời gian nộp
+	}
+	for (int i = 0; i <= 86400; i++) {//mỗi thời điểm sẽ có tổng submit bằng chính nó cộng với tất cả thời gian trước đó
+		time_submit_81[i] += time_submit_81[i - 1]; // Cập nhật thời gian nộp
+	}
+	while (getline(cin, s)) {//nhập tiếp
+		if (s == "#") {//gặp # thì dừng
+			break;
+		}
+		if (s[8] == 's') {// nếu chuỗi dạng number_submission_period
+
+			stringstream ss(s);
+			string a, b, c;
+			ss >> a >> b >> c;//tách ra a b c trong xâu
+			int h = stoi(b.substr(0, 2));//tách ra giờ
+			int m = stoi(b.substr(3, 5));//phút
+			int sss = stoi(b.substr(6));//giây
+			int timee = h * 60 * 60 + m * 60 + sss;//tương tự trên nhưng là thời điểm sau
+			int h1 = stoi(c.substr(0, 2));
+			int m1 = stoi(c.substr(3, 5));
+			int sss1 = stoi(c.substr(6));
+			int timee1 = h1 * 60 * 60 + m1 * 60 + sss1;
+
+			cout << time_submit_81[timee1] - time_submit_81[timee - 1] << "\n"; // In ra thời gian nộp
+
+
+		}
+		else
+			if (s[7] == 'n') {//nếu chuỗi dạng ?total_number_submissions
+				cout << countSubmit_81 << "\n"; // In ra tổng số lượng bài nộp
+			}
+			else if (s[8] == 'e') {
+				if (s == "?number_error_submision") {//nếu chuỗi là  ?number_error_submision
+					cout << sumtotalError_81 << "\n"; // In ra tổng số lỗi
+				}
+				else {//nếu chuỗi dạng ?number_error_submision_of_user
+					stringstream ss(s);
+					string a, b;
+					ss >> a >> b;
+					cout << totalError_81[b] << "\n"; // In ra tổng số lỗi theo người dùng
+				}
+
+			}
+			else {//nếu chuỗi dạng ?total_point_of_user
+				stringstream ss(s);
+				string a, b;
+				ss >> a >> b;
+				cout << total_point_81[b] << "\n"; // In ra tổng điểm theo người dùng
+			}
+
+	}
+}

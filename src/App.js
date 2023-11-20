@@ -108,6 +108,7 @@ const weeks = [
             { name: 'bài 1', url: '' },
             { name: 'bài 2', url: '' },
         ],
+        pdf: './tuan7.pdf',
     },
     {
         name: 'tuần 8',
@@ -116,6 +117,7 @@ const weeks = [
             { name: 'bài 1', url: '' },
             { name: 'bài 2', url: '' },
         ],
+        pdf: './tuan8.pdf',
     },
 ];
 function App() {
@@ -162,7 +164,7 @@ function App() {
             .get(baocao)
             .then((response) => {
                 // response.data chứa nội dung của tệp .txt
-                console.log('Nội dung tệp:', response.data);
+                //   console.log('Nội dung tệp:', response.data);
                 setFile(response.data);
             })
             .catch((error) => {
@@ -174,19 +176,37 @@ function App() {
     };
     return (
         <div>
-            <Grid container paddingLeft="100px">
-                <Grid item xs={12}>
-                    <Typography variant="h2">Báo cáo tuần 1-8 môn project 1</Typography>
-                    <Typography variant="h5" color="#a37152">
-                        Mai Minh Hoàng-20215381
-                    </Typography>
+            <Grid container>
+                <Grid item container xs={12} justifyContent="center">
+                    <Grid item>
+                        <Typography variant="h2">Báo cáo &nbsp;</Typography>
+                    </Grid>
+                    <Grid item>
+                        <Typography variant="h2">tuần 1-8 &nbsp;</Typography>
+                    </Grid>
+                    <Grid item>
+                        <Typography variant="h2">môn project 1</Typography>
+                    </Grid>
+                    <Grid item xs={12} textAlign="center">
+                        <Typography variant="h5" color="#a37152">
+                            Mai Minh Hoàng-20215381
+                        </Typography>
+                    </Grid>
                 </Grid>
 
-                <Grid item container marginTop="100px" display="flex" alignItems="center">
-                    <Grid item xs={2}>
+                <Grid
+                    item
+                    container
+                    xs={12}
+                    marginTop="100px"
+                    display="flex"
+                    alignItems="center"
+                    justifyContent="center"
+                >
+                    <Grid item xs={4} md={2}>
                         <Typography variant="h5">Chọn tuần</Typography>
                     </Grid>
-                    <Grid item xs={9}>
+                    <Grid item xs={4} md={6}>
                         <InputLabel id="week">Tuần</InputLabel>
                         <Select labelId="week" onChange={handleChange} value={week} sx={{ minWidth: 120 }}>
                             {weeks.map((item, index) => {
@@ -199,11 +219,11 @@ function App() {
                         </Select>
                     </Grid>
                 </Grid>
-                <Grid item container display="flex" alignItems="center" xs={12}>
-                    <Grid item xs={2}>
+                <Grid item container display="flex" alignItems="center" xs={12} justifyContent="center">
+                    <Grid item xs={4} md={2}>
                         <Typography variant="h5">Chọn bài</Typography>
                     </Grid>
-                    <Grid item xs={9}>
+                    <Grid item xs={4} md={6}>
                         <InputLabel id="quesiton">Bài</InputLabel>
                         <Select labelId="question" onChange={handleChange2} value={question} sx={{ minWidth: 120 }}>
                             {week.children.map((item, index) => {
@@ -216,16 +236,27 @@ function App() {
                         </Select>
                     </Grid>
                 </Grid>
-                <Grid item>
-                    <Button variant="contained" onClick={handleClick}>
-                        Xem
-                    </Button>
+                <Grid item container justifyContent="center" alignItems="center" padding="20px 0px">
+                    <Grid item>
+                        <Button variant="contained" onClick={handleClick}>
+                            Xem
+                        </Button>
+                    </Grid>
                 </Grid>
 
-                <Grid item xs={12} display="flex" justifyContent="center" alignItems="center" flexDirection="column">
-                    <div style={{ border: '1px solid #333', height: '0px', width: '800px' }} />
+                <Grid
+                    item
+                    container
+                    xs={12}
+                    display="flex"
+                    justifyContent="center"
+                    alignItems="center"
+                    flexDirection="row"
+                >
+                    <Grid item xs={12} md={8} style={{ border: '1px solid #333', height: '0px', width: '800px' }} />
+
                     {week && question.name == 'báo cáo' && clicked ? (
-                        <Fragment>
+                        <Grid item xs={12} md={8} overflow="auto">
                             <div
                                 style={{
                                     width: '800px',
@@ -247,18 +278,18 @@ function App() {
                                     })}
                                 </Document>
                             </div>
-                        </Fragment>
+                        </Grid>
                     ) : question && question.name != 'báo cáo' && clicked2 ? (
-                        <div>
+                        <Grid item xs={12} md={8} overflow="auto">
                             <pre>{file}</pre>
-                        </div>
+                        </Grid>
                     ) : loading ? (
                         <CircularProgress />
                     ) : (
                         ''
                     )}
 
-                    <div style={{ border: '1px solid #333', height: '0px', width: '800px' }} />
+                    <Grid item xs={12} md={8} style={{ border: '1px solid #333', height: '0px', width: '800px' }} />
                 </Grid>
             </Grid>
         </div>

@@ -1,0 +1,87 @@
+//Mai Minh Hoàng
+//20215381
+#include <iostream> 
+#include<set>
+#include<sstream> 
+#include<unordered_map> 
+using namespace std; 
+
+long countOrder_81 = 0; // Khai báo biến đếm số lượng đơn hàng
+long sumTotalMoney_81 = 0; // Khai báo biến tổng số tiền
+unordered_map<string, long> totalmoney_81; // Khai báo unordered_map chứa tổng số tiền theo ShopId
+unordered_map<string, long> totalmoney_product_81; // Khai báo unordered_map chứa tổng số tiền theo CustomId và ShopId
+long time_order_81[86400]; // Khai báo mảng chứa số tiền theo thời gian
+
+int main()
+{
+    ios_base::sync_with_stdio(0); // Tắt đồng bộ
+
+    string s_81; // Khai báo biến chuỗi s_81
+    while (getline(cin, s_81)) {
+        if (s_81 == "#") {
+            break;
+        }
+        stringstream ss_81(s_81); // Khai báo đối tượng stringstream
+        string CustomId_81; // Khai báo biến chuỗi CustomId_81
+        string Product_81; // Khai báo biến chuỗi Product_81
+        long money_81; // Khai báo biến dài money_81
+        string ShopId_81; // Khai báo biến chuỗi ShopId_81
+        string Time_81; // Khai báo biến chuỗi Time_81
+        ss_81 >> CustomId_81 >> Product_81 >> money_81 >> ShopId_81 >> Time_81; // Đọc dữ liệu từ ss_81
+
+        countOrder_81++; // Tăng countOrder_81
+        sumTotalMoney_81 += money_81; // Cập nhật sumTotalMoney_81
+        totalmoney_81[ShopId_81] += money_81; // Cập nhật totalmoney_81
+        totalmoney_product_81[CustomId_81 + " " + ShopId_81] += money_81; // Cập nhật totalmoney_product_81
+        int h_81 = stoi(Time_81.substr(0, 2)); // Chuyển đổi giờ thành số nguyên
+        int m_81 = stoi(Time_81.substr(3, 5)); // Chuyển đổi phút thành số nguyên
+        int sss_81 = stoi(Time_81.substr(6)); // Chuyển đổi giây thành số nguyên
+        time_order_81[h_81 * 60 * 60 + m_81 * 60 + sss_81] += money_81; // Cập nhật time_order_81
+    }
+    for (int i_81 = 0; i_81 <= 86400; i_81++) {
+        time_order_81[i_81] += time_order_81[i_81 - 1]; // Cập nhật time_order_81
+    }
+    while (getline(cin, s_81)) {
+        if (s_81 == "#") {
+            break;
+        }
+        if (s_81[7] == 'r') {
+            if (s_81.length() > 15) {
+                stringstream ss2_81(s_81); // Khai báo đối tượng stringstream
+                string a_81, b_81, c_81;
+                ss2_81 >> a_81 >> b_81 >> c_81; // Đọc dữ liệu từ ss2_81
+                int h_81 = stoi(b_81.substr(0, 2)); // Chuyển đổi giờ thành số nguyên
+                int m_81 = stoi(b_81.substr(3, 5)); // Chuyển đổi phút thành số nguyên
+                int sss_81 = stoi(b_81.substr(6)); // Chuyển đổi giây thành số nguyên
+                int timee_81 = h_81 * 60 * 60 + m_81 * 60 + sss_81; // Tính toán thời gian
+                int h1_81 = stoi(c_81.substr(0, 2)); // Chuyển đổi giờ thành số nguyên
+                int m1_81 = stoi(c_81.substr(3, 5)); // Chuyển đổi phút thành số nguyên
+                int sss1_81 = stoi(c_81.substr(6)); // Chuyển đổi giây thành số nguyên
+                int timee1_81 = h1_81 * 60 * 60 + m1_81 * 60 + sss1_81; // Tính toán thời gian
+
+                cout << time_order_81[timee1_81] - time_order_81[timee_81 - 1] << "\n"; // In ra tổng số tiền trong khoảng thời gian
+            }
+            else {
+                cout << sumTotalMoney_81 << "\n"; // In ra tổng số tiền
+            }
+
+        }
+        else
+            if (s_81[7] == 'n') {
+                cout << countOrder_81 << "\n"; // In ra số lượng đơn hàng
+            }
+            else if (s_81[9] == 'o') {
+                stringstream ss2_81(s_81); // Khai báo đối tượng stringstream
+                string a_81, b_81;
+                ss2_81 >> a_81 >> b_81; // Đọc dữ liệu từ ss2_81
+                cout << totalmoney_81[b_81] << "\n"; // In ra tổng số tiền theo ShopId
+            }
+            else {
+                stringstream ss2_81(s_81); // Khai báo đối tượng stringstream
+                string a_81, b_81, c_81;
+                ss2_81 >> a_81 >> b_81 >> c_81; // Đọc dữ liệu từ ss2_81
+                cout << totalmoney_product_81[b_81 + " " + c_81] << "\n"; // In ra tổng số tiền theo CustomId và ShopId
+            }
+
+    }
+}

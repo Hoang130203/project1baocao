@@ -1,0 +1,118 @@
+//Mai Minh Hoàng
+//20215381
+#include <list>
+#include <iostream>
+#include<set>
+#include<sstream>
+#include<unordered_map>
+#include<vector>
+#include<map>
+using namespace std;
+
+long countPeople_81 = 0; // Biến đếm tổng số người 
+long sumtotalPeople_81 = 0; // Biến đếm tổng số người
+map<string, long> totalPeople_81; // Bản đồ lưu tổng số người theo ngày sinh
+unordered_map<string, int > notAlone_81; // Bản đồ kiểm tra người không một mình
+unordered_map<string, int> maxAcestor_81; // Bản đồ lưu số tổ tiên tối đa của mỗi người
+unordered_map<string, int> peopleBirth_81; // Bản đồ lưu số người theo ngày sinh
+long countAlone_81 = 0; // Biến đếm số người một mình
+long countGroup_81 = 0; // Biến đếm số nhóm
+
+int main()
+{
+	ios_base::sync_with_stdio(0);
+	string s;
+
+	// Tạo bản đồ cho tất cả các ngày từ năm 1900 đến 2030
+	for (int i = 1900; i < 2030; i++) {
+		for (int j = 1; j <= 12; j++) {
+			for (int k = 1; k <= 31; k++) {
+				string year = to_string(i);
+				string month = (j < 10) ? "0" + to_string(j) : to_string(j);
+				string day = (k < 10) ? "0" + to_string(k) : to_string(k);
+
+				string date = year + "-" + month + "-" + day;
+				totalPeople_81[date] = 0; // Khởi tạo số người sinh vào ngày đó là 0
+			}
+		}
+	}
+
+	// Đọc dữ liệu từ đầu vào
+	while (getline(cin, s)) {
+		if (s == "*") {//gặp * thì dừng
+			break;
+		}
+		stringstream ss(s);//phân tách đầu vào
+		string UserId;
+		string Birth;
+		string fCode;
+		string mCode;
+		string isAlive;
+		string rCode;
+		ss >> UserId >> Birth >> fCode >> mCode >> isAlive >> rCode;
+
+		countPeople_81++; // Tăng biến đếm tổng số người
+		if ((fCode != "0000000") && (mCode != "0000000")) {
+			maxAcestor_81[UserId] = (maxAcestor_81[fCode] > maxAcestor_81[mCode] ? maxAcestor_81[fCode] + 1 : maxAcestor_81[mCode] + 1);
+			countGroup_81++; // Tăng biến đếm số nhóm
+			notAlone_81[UserId] = 1; // Đánh dấu người này không một mình
+			notAlone_81[fCode] = 1; // Đánh dấu cha/mẹ của người này không một mình
+			notAlone_81[mCode] = 1; // Đánh dấu cha/mẹ của người này không một mình
+		}
+		else {
+			notAlone_81[UserId] = 0; // Đánh dấu người này một mình
+		}
+
+		peopleBirth_81[Birth] += 1; // Tăng số người sinh vào ngày Birth
+		totalPeople_81[Birth] += 1; // Tăng tổng số người sinh vào ngày Birth
+	}
+	int previousValue = 0;
+	for (auto& p : totalPeople_81) {//cộng dồn ngày sau bằng tổng tất cả người sinh các ngày trước đó
+		int currentValue = p.second;
+		p.second = previousValue + currentValue; // Cập nhật tổng số người sinh đến ngày hiện tại
+		previousValue = p.second;//gán lại để tới vòng lặp tiếp
+
+	}
+	for (auto& p : notAlone_81) {//duyệt qua notAlone_81
+		if (p.second == 0) {
+			countAlone_81++; // Đếm số người một mình
+		}
+	}
+	while (getline(cin, s)) {
+		if (s == "***") {//gặp *** thì dừng
+			break;
+		}
+		if (s[7] == 'P') {//chuỗi là  NUMBER_PEOPLE_BORN_BETWEEN <from_date> <to_date>
+			if (s.length() > 34) {
+				stringstream ss(s);
+				string a, b, c;
+				ss >> a >> b >> c;
+
+				cout << totalPeople_81[c] - totalPeople_81[b] + peopleBirth_81[b] << "\n"; // Trả về số người sinh trong khoảng thời gian
+			}
+			else if (s.length() == 13) {//chuỗi là NUMBER_PEOPLE
+				cout << countPeople_81 << "\n"; // Trả về tổng số người 
+			}
+			else {//chuỗi là NUMBER_PEOPLE_BORN_AT <date>
+				stringstream ss(s);
+				string a, b;
+				ss >> a >> b;
+				cout << peopleBirth_81[b] << "\n"; // Trả về số người sinh vào ngày <b>
+			}
+
+		}
+		else
+			if (s[0] == 'M' && s[1] == 'O') {//chuỗi là MOST_ALIVE_ANCESTOR <code>
+				stringstream ss(s);
+				string a, b;
+				ss >> a >> b;
+				cout << maxAcestor_81[b] << "\n"; // Trả về số tổ tiên tối đa của người b
+			}
+			else {//chuỗi là MAX_UNRELATED_PEOPLE
+				// Trả về tổng số người một mình và số nhóm chính là kết quả để 2 người bất kỳ trong nhóm không phải vợ chồng/ anh chị em
+				cout << countAlone_81 + countGroup_81 << "\n";
+			}
+				
+
+	}
+}
