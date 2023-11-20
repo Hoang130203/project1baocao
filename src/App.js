@@ -207,12 +207,12 @@ function App() {
                     alignItems="center"
                     justifyContent="center"
                 >
-                    <Grid item xs={4} md={2}>
+                    <Grid item xs={5} sm={4} md={2}>
                         <Typography variant="h5">Chọn tuần</Typography>
                     </Grid>
-                    <Grid item xs={4} md={6}>
+                    <Grid item xs={6} sm={4} md={6}>
                         <InputLabel id="week">Tuần</InputLabel>
-                        <Select labelId="week" onChange={handleChange} value={week} sx={{ minWidth: 120 }}>
+                        <Select labelId="week" onChange={handleChange} value={week} sx={{ minWidth: 170 }}>
                             {weeks.map((item, index) => {
                                 return (
                                     <MenuItem value={item} key={index}>
@@ -224,12 +224,12 @@ function App() {
                     </Grid>
                 </Grid>
                 <Grid item container display="flex" alignItems="center" xs={12} justifyContent="center">
-                    <Grid item xs={4} md={2}>
+                    <Grid item xs={5} sm={4} md={2}>
                         <Typography variant="h5">Chọn bài</Typography>
                     </Grid>
-                    <Grid item xs={4} md={6}>
+                    <Grid item xs={6} sm={4} md={6}>
                         <InputLabel id="quesiton">Bài</InputLabel>
-                        <Select labelId="question" onChange={handleChange2} value={question} sx={{ minWidth: 120 }}>
+                        <Select labelId="question" onChange={handleChange2} value={question} sx={{ minWidth: 170 }}>
                             {week.children.map((item, index) => {
                                 return (
                                     <MenuItem value={item} key={index}>
@@ -240,8 +240,9 @@ function App() {
                         </Select>
                     </Grid>
                 </Grid>
-                <Grid item container justifyContent="center" alignItems="center" padding="20px 0px">
-                    <Grid item>
+                <Grid item container justifyContent="flex-start" alignItems="center" padding="20px 0px">
+                    <Grid item xs={1} sm={2}></Grid>
+                    <Grid item xs={4} md={6}>
                         <Button variant="contained" onClick={handleClick}>
                             Xem
                         </Button>
