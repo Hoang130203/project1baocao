@@ -1,4 +1,15 @@
-import { Button, CircularProgress, Divider, Grid, InputLabel, MenuItem, Select, Typography } from '@mui/material';
+import {
+    Button,
+    CircularProgress,
+    Divider,
+    Grid,
+    InputLabel,
+    MenuItem,
+    Select,
+    TextField,
+    TextareaAutosize,
+    Typography,
+} from '@mui/material';
 import { Fragment, useEffect, useState } from 'react';
 import { Document, Page } from 'react-pdf';
 import ReactPDF, { PDFViewer, StyleSheet, Text, View } from '@react-pdf/renderer';
@@ -6,6 +17,7 @@ import MyDocument from './MyDocument';
 import { useDebounceCallback } from '@react-pdf-viewer/core';
 import axios from 'axios';
 import { Prism as SyntaxHightlighter } from 'react-syntax-highlighter';
+import Complier from './Complier';
 const styles = StyleSheet.create({
     page: {
         flexDirection: 'row',
@@ -121,6 +133,8 @@ const weeks = [
     },
 ];
 function App() {
+    const [language, setLanguage] = useState('cpp');
+    const [input, setInput] = useState('');
     const [divWidth, setDivWidth] = useState(null);
 
     const [week, setWeek] = useState(weeks[0]);
@@ -178,6 +192,7 @@ function App() {
                 setLoading(false);
             });
     };
+
     return (
         <div>
             <Grid container>
@@ -292,8 +307,57 @@ function App() {
                             </div>
                         </Grid>
                     ) : question && question.name != 'báo cáo' && clicked2 ? (
-                        <Grid item xs={12} md={8} overflow="auto">
-                            <SyntaxHightlighter language="cpp">{file}</SyntaxHightlighter>
+                        <Grid item container xs={12} md={8}>
+                            <Grid item xs={12} overflow="auto">
+                                <SyntaxHightlighter language="cpp">{file}</SyntaxHightlighter>
+                            </Grid>
+                            <Grid item container xs={12} justifyContent="center" padding="30px 0px">
+                                <Grid container item xs={12} display="flex" flexDirection="column">
+                                    <Grid item container paddingBottom="10px">
+                                        <Grid item xs={3}>
+                                            <Typography variant="h5">Input</Typography>
+                                        </Grid>
+                                        <Grid item>
+                                            <Select
+                                                style={{ width: '150px', height: '45px' }}
+                                                value={language}
+                                                onChange={(e) => {
+                                                    setLanguage(e.target.value);
+                                                }}
+                                            >
+                                                <MenuItem value="cpp">
+                                                    <Typography>C++</Typography>
+                                                </MenuItem>
+                                                <MenuItem value="java">
+                                                    <Typography>java</Typography>
+                                                </MenuItem>
+                                                <MenuItem value="py">
+                                                    <Typography>python</Typography>
+                                                </MenuItem>
+                                            </Select>
+                                        </Grid>
+                                    </Grid>
+                                    <Grid item>
+                                        <TextareaAutosize
+                                            style={{
+                                                width: '95%',
+                                                minHeight: '300px',
+                                                maxHeight: '500px',
+                                                overflow: 'auto',
+                                                padding: '10px 0px 10px 10px',
+                                                fontSize: '15px',
+                                            }}
+                                            onChange={(e) => {
+                                                console.log(e.target.value);
+                                                setInput(e.target.value);
+                                            }}
+                                        ></TextareaAutosize>
+                                    </Grid>
+                                </Grid>
+                                <Grid item container xs={12} paddingLeft="15px" paddingTop="20px">
+                                    <Complier language={language} tuan={week.name} bai={question.name} input={input} />
+                                </Grid>
+                            </Grid>
                         </Grid>
                     ) : loading ? (
                         <CircularProgress />
