@@ -1,0 +1,24 @@
+Bài toán 3: So sánh chênh lệch giá điện theo đề xuất mới của EVS
+________________________________________
+Hiện tại giá điện đang được tính theo cấp bậc gồm 6 cấp (điều chỉnh từ 05/04/2023), với giá thấp nhất (bậc 1) là 1.728 VNĐ và giá cấp cao nhất là 3.015 VNĐ. Tuy nhiên, EVEN đang đề xuất một cách tính giá điện bậc thang mới chỉ bao gồm 5 cấp độ như hình dưới, giá thấp nhất (bậc 1) khoảng 1,728 đồng một kWh và cao nhất (bậc 5) là 3,457 đồng một kWh.
+
+
+Biểu giá hành động Phương án 5 bậc
+Mức sử dụng Giá (*) Mức sử dụng Giá
+1 0-50 kWh 1,728 0-100 kWh 1,728
+2 51-100 kWh 1,786 101-200 kWh 2,074
+3 101-200 kWh 2,074 201-400 kWh 2,612
+4 201-300 kWh 2,612 401-700 kWh 3,111
+5 301-400 kWh 2.919 701 kWh trở lên 3.457
+6 401 kWh trở lên 3,015 
+(*) Giá chưa bao gồm thuế GTGT
+
+
+Hãy xây dựng chương trình nhập số kwh điện của một hộ tiêu thụ và so sánh xem bảng giá mới đang lấy ý kiến trúc thì tiền điện thụ của đó sẽ tăng thêm hay giảm đi bao nhiêu.
+
+
+INPUT : là số kwh điện thụ động của hộ (là số nguyên)
+OUTPUT : là chênh lệch giữa giá mô tả và giá theo cấp bậc 6 đang được áp dụng.
+
+
+VAT sẽ được thu là 10% và kết quả sẽ được lấy tới 2 phân tích chữ số 

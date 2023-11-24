@@ -1,0 +1,11 @@
+Bài 6: Bài toán: Đếm số đáp án sudoku
+________________________________________
+Viết chương trình tính số đáp án sudoku (điền các phần tử 0 của bảng sudoku từng phần cho trước)
+Điền các số từ bảng 1, 2, 3,.., 9 đến 9 x 9 sao cho:
+•	Số mỗi hàng khác nhau
+•	Số mỗi cột khác nhau
+•	Các số trên mỗi ô vuông con 3 x 3 khác nhau
+Đầu vào
+•	Mỗi dòng i ( i = 1, 2, ..., 9) chứa các phần tử của iquần quèhàng của bảng Sudoku: các phần tử là các số từ 0 đến 9 (giá trị 0 nghĩa là ô trống của bảng)
+đầu ra
+•	Viết số phương án tìm được

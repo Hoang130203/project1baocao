@@ -1,0 +1,11 @@
+Vấn đề 2: Hàng đợi mô phỏng
+________________________________________
+Thực hiện một chuỗi các thao tác trên một hàng đợi, mỗi phần tử là một số nguyên:
+•	PUSH v: đẩy giá trị v vào hàng đợi
+•	POP: xóa một phần tử ra khỏi hàng đợi và in phần tử này ra thiết bị xuất chuẩn (in NULL nếu hàng đợi trống)
+Đầu vào
+Mỗi dòng chứa một lệnh (thao tác) thuộc loại
+•	Push v
+•	POP
+đầu ra
+•	Viết kết quả của phép toán POP (mỗi kết quả ghi một dòng)

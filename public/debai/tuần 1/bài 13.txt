@@ -1,0 +1,7 @@
+Vấn đề 13: Đếm số từ
+________________________________________
+Cho một Text, viết chương trình đếm số Q từ (bỏ qua các ký tự SPACE, TAB, LineBreak) của Text này
+Đầu vào
+•	văn bản
+đầu ra
+•	Viết số Q của từ

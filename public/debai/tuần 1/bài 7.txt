@@ -1,0 +1,8 @@
+Bài toán 7: Đếm số lẻ và số chẵn trong một dãy
+________________________________________
+Cho dãy số nguyên a1, a2, ..., an. Đếm số phần tử lẻ và số phần tử chẵn của dãy.
+Đầu vào
+•	Dòng 1: chứa số nguyên dương n (1 <= n <= 100000)
+•	Dòng 2: chứa a1, a2, ..., an. (1 <= ai <= 1000000)
+đầu ra
+•	Viết số phần tử lẻ và số phần tử chẵn (cách nhau bằng ký tự SPACE)

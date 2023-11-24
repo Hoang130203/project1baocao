@@ -1,0 +1,10 @@
+Vấn đề 2: Băm trên chuỗi
+________________________________________
+Cho một chuỗi s[1…k] là một chuỗi các ký tự được lấy từ {'a', . . ., 'z'}. Cho số nguyên dương m, mã băm của s được xác định theo công thức:
+H(s) = (s[1]*256k-1+s[2]*256k-2+ . . . +s[k]*2560) mod m (số nguyên m là một tham số)
+Cho dãy các chuỗi k1, k2, …, kn, tính mã băm tương ứng
+Đầu vào
+Dòng 1: n và m (1 <= n,m <= 100000)
+Dòng i+1 (i = 1,2,…,n): chứa xâu ki (độ dài mỗi xâu nhỏ hơn hoặc bằng 200)
+đầu ra
+Mỗi dòng chứa mã băm tương ứng của n chuỗi cho trước

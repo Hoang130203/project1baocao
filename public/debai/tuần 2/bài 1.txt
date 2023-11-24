@@ -1,0 +1,13 @@
+Bài 1: Problem: Dãy fibonacci
+________________________________________
+Cho dãy fibonacci a[0], a[1], a[2], ... trong đó: a[0] = 0, a[1] = 1, a[n] = a[n-1] + a[n-2], với mọi n >= 2
+Cho số nguyên dương n, tính a[n-1].
+Đầu vào
+Dòng 1: chứa số nguyên dương n (2 <= n <= 21)
+đầu ra
+Viết một [n-1]
+Ví dụ
+Đầu vào
+9
+đầu ra
+21

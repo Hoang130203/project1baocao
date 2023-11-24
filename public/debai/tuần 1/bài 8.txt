@@ -1,0 +1,7 @@
+Bài toán 8: Cộng trừ nhân chia của A và B
+________________________________________
+Cho 2 số nguyên a và b. Tính a+b, ab, a*b, a/b.
+Đầu vào
+Dòng 1 chứa 2 số nguyên a và b (1 <= a,b <= 1000)
+đầu ra
+Viết a+b, ab, a*b, a/b (4 số nguyên cách nhau bằng ký tự SPACE)

@@ -1,0 +1,24 @@
+Bài 2: Phân tích dữ liệu công dân
+________________________________________
+Cho một DataBase về công dân, thực hiện các truy vấn trên DataBase này.
+Đầu vào
+Đầu vào bao gồm hai khối: khối đầu tiên là DataBase và khối thứ hai là danh sách các truy vấn. Hai khối cách nhau bằng một dòng chứa ký tự *.
+1. Khối đầu tiên (DataBase về công dân) gồm các dòng (số dòng có thể lên tới 100000), mỗi dòng là thông tin về một người và có dạng:
+<code> <dat_of_birth> <fathher_code> <mother_code> <is_alive> <region_code>
+trong đó:
+•	<code>: mã của người là chuỗi có độ dài 7
+•	<date_of_birth>: ngày sinh của người đó và có định dạng YYYY-MM-DD (ví dụ 1980-02-birth>), <date_of_birth> là trước 3000-12-31
+•	<fathher_code> và <mother_code> là mã của cha và mẹ: chúng cũng là chuỗi có độ dài 7. Nếu mã là 0000000 thì người hiện tại không có thông tin về bố hoặc mẹ
+•	<is_alive>: ký tự có 2 giá trị: 'Y' nghĩa là người đó vẫn còn sống, và 'N' nghĩa là người hiện tại đã chết.
+•	<region_code>: mã vùng nơi người đó sinh sống
+
+
+2. Khối thứ hai là danh sách các truy vấn (số lượng truy vấn có thể lên tới 100000) trên DataBase bao gồm các lệnh sau:
+•	NUMBER_PEOPLE: trả về số lượng người (số dòng của DataBase)
+•	NUMBER_PEOPLE_BORN_AT <date>: trả về số người có ngày sinh bằng <date>
+•	MOST_ALIVE_ANCESTOR <code>: tìm tổ tiên cao nhất (xa nhất về khoảng cách thế hệ) của người <code> nhất định. Trả về khoảng cách thế hệ giữa tổ tiên được tìm thấy và người đã cho
+•	NUMBER_PEOPLE_BORN_BETWEEN <from_date> <to_date>: tính số người có ngày sinh trong khoảng từ <from_date> đến <to_date> (<from_date> và <to_date> có dạng YYYY-MM-DD, <to_date> là trước đó 3000-12-31)
+•	MAX_UNRELATED_PEOPLE: tìm một tập con gồm những người trong đó có hai người bất kỳ trong tập con đó không có cha/mẹ-con và kích thước của tập con đó là lớn nhất. Trả về kích thước của tập hợp con được tìm thấy.
+Khối thứ hai được kết thúc bằng một dòng chứa ***.
+đầu ra
+•	Mỗi dòng trình bày kết quả của truy vấn tương ứng (được mô tả ở trên).

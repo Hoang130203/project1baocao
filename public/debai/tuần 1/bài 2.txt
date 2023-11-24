@@ -1,0 +1,7 @@
+Bài toán 2: Liệt kê dãy số nguyên có 3 chữ số chia hết cho n
+________________________________________
+Cho số nguyên dương n, tìm mọi số nguyên có 3 chữ số chia hết cho n.
+Đầu vào
+Dòng 1: chứa số nguyên dương n (1 <= n <= 999)
+đầu ra
+Viết dãy số tìm được (các phần tử cách nhau bằng ký tự SPACE)

@@ -1,0 +1,9 @@
+Bài tập 2: Đường dẫn ngắn nhất giữa 2 nút trên biểu đồ có hướng có trọng số không âm
+________________________________________
+Cho đồ thị có hướng G = (V,E) trong đó V = {1,2,...,n) là tập hợp các nút. Mỗi cung (u,v) có trọng số không âm w(u,v). Cho hai nút s và t của G. Tìm đường đi ngắn nhất từ s đến t trên G.
+Đầu vào
+•	Dòng 1: chứa hai số nguyên n và m là số nút và số cung của G (1 <= n <= 100000)
+•	Dòng i + 1(i = 1,2,...,m): chứa 3 số nguyên u, v, w trong đó w là trọng số của cung(u,v) (0 <= w <= 100000)
+•	Dòng m+2: chứa hai số nguyên s và t
+đầu ra
+Viết trọng số của đường đi ngắn nhất được tìm thấy hoặc viết -1 nếu không tìm thấy đường đi nào từ s đến t

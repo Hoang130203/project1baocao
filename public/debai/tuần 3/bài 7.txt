@@ -1,0 +1,9 @@
+Vấn đề 7:BST - Chèn và truyền tải đặt hàng trước
+________________________________________
+Cho một BST được khởi tạo bởi NULL. Thực hiện một chuỗi các thao tác trên BST bao gồm:
+•	chèn k: chèn khóa k vào BST (không chèn nếu khóa k tồn tại)
+Đầu vào
+•Mỗi dòng chứa lệnh có dạng: “insert k”
+• Đầu vào được kết thúc bằng một dòng chứa #
+đầu ra
+•Viết chuỗi khóa của các nút được duyệt qua theo thứ tự trước (cách nhau bằng ký tự SPACE)

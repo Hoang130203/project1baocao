@@ -1,0 +1,12 @@
+Vấn đề 6: Cây gia phả
+________________________________________
+Cho một cây phả hệ được biểu thị bằng quan hệ con-cha mẹ (c,p) trong đó c là con của p. Thực hiện các truy vấn về cây gia phả:
+•	hậu duệ <name>: trả về số hậu duệ của <name> đã cho
+•	thế hệ <name>: trả về số thế hệ con cháu của <name> đã cho
+
+
+Lưu ý: tổng số người trong gia đình nhỏ hơn hoặc bằng 104
+Đầu vào
+Chứa hai khối. Khối đầu tiên chứa thông tin về cha-con, bao gồm các dòng (kết thúc bằng một dòng chứa ***), mỗi dòng chứa: <child> <parent> trong đó <child> là một chuỗi thể hiện tên của con và <parent> là một chuỗi đại diện cho tên của cha mẹ. Khối thứ hai chứa các dòng (kết thúc bằng một dòng chứa ***), mỗi dòng chứa hai chuỗi <cmd> và <param> trong đó <cmd> là lệnh (có thể là hậu duệ hoặc thế hệ) và <param> là chuỗi đã cho tên của người tham gia truy vấn.
+đầu ra
+Mỗi dòng là kết quả của một truy vấn tương ứng.

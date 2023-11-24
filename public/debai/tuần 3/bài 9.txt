@@ -1,0 +1,18 @@
+Vấn đề 9: Thao tác danh sách liên kết
+________________________________________
+Viết chương trình thực hiện công việc sau:
+Xây dựng danh sách liên kết với các từ khóa được cung cấp ban đầu là chuỗi a1, Một2, …, MộtN, sau đó thực hiện các thao tác trên danh sách bao gồm: thêm 1 phần tử vào đầu, vào cuối danh sách, hoặc vào trước, vào sau 1 phần tử nào trong danh sách, hoặc loại bỏ 1 phần tử nào trong đó danh sách
+
+
+Đầu vào
+•	Dòng 1: ghi số nguyên dương n (1 <= n <= 1000)
+•	Dòng 2: write các số nguyên dương a1, Một2, …, MộtN.
+•	Các dòng tiếp theo được dùng để thao tác (kết thúc bởi ký hiệu #) với các loại sau:
+o	addlast k: thêm phần tử có khóa bằng k vào danh sách cuối cùng (nếu k tồn tại)
+o	addfirst k: thêm phần tử có khóa bằng k vào đầu danh sách (nếu k tồn tại)
+o	addafter uv: thêm phần tử có khóa bằng u vào sau phần tử có khóa bằng v trên danh sách (nếu v tồn tại trên danh sách và u không tồn tại)
+o	add before uv: add phần tử có khóa bằng u vào trước phần tử có khóa bằng v trên danh sách (nếu v tồn tại trên danh sách và u tồn tại)
+o	loại bỏ k: loại bỏ phần tử có khóa khỏi danh sách
+o	đảo ngược: đảo ngược thứ tự các phần tử của danh sách (không thể cung cấp các phần tử mới, chỉ thay đổi liên kết kết nối)
+đầu ra
+•	Ghi lại khóa chuỗi của danh sách sau 1 chuỗi thao tác lệnh đã chọn

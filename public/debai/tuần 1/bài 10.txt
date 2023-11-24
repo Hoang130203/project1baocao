@@ -1,0 +1,9 @@
+Bài toán 10: Giải phương trình đa thức bậc 2
+________________________________________
+Cho phương trình ax^2 + bx + c = 0. Tìm nghiệm của phương trình đã cho.
+Đầu vào
+•	Dòng 1 chứa 3 số nguyên dương a, b, c
+đầu ra
+•	Viết KHÔNG GIẢI nếu phương trình đã cho không có nghiệm
+•	Viết x0 (2 chữ số sau dấu thập phân) nếu phương trình đã cho có một nghiệm x0
+•	Viết x1, x2 với x1 < x2 (2 chữ số sau dấu thập phân) nếu phương trình đã cho có hai nghiệm phân biệt x1, x2

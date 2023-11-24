@@ -1,0 +1,11 @@
+Vấn đề 5: Thao tác và truyền tải cây
+________________________________________
+Mỗi nút trên cây có id trường (mã định danh) là một số nguyên (id của các nút trên cây trùng lặp khác nhau)
+Thực hiện 1 chuỗi hành động sau đây bao gồm các thao tác liên quan đến xây dựng cây và trình duyệt cây
+· MakeRoot u: Tạo ra nút gốc của cây
+· Insert uv: tạo mới 1 nút u và chèn vào danh sách nút cuối cùng của nút v (nếu nút có id bằng v không tồn tại hoặc nút có id bằng u đã tồn tại thì không chèn thêm mới)
+· PreOrder: in ra thứ tự các nút trong trình duyệt cây theo thứ tự trước đó
+· InOrder: in order các nút trong trình duyệt cây được phép theo thứ tự giữa
+· PostOrder: in order các nút trong trình duyệt cây theo thứ tự sau
+Dữ liệu : bao gồm các dòng, mỗi dòng là 1 trong số các hành động được mô tả ở trên, dòng cuối cùng được sử dụng là * (dấu kết thúc của dữ liệu).
+Kết quả : ghi ra trên mỗi dòng, các nút thứ tự được phép truy cập theo thứ tự trước, giữa, sau của các hành động PreOrder, InOrder, PostOrder tương ứng được đọc từ đầu vào dữ liệu

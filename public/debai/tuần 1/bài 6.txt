@@ -1,0 +1,7 @@
+Bài toán 6: Liệt kê tất cả các số từ 1 đến n và các bình phương của nó
+________________________________________
+Cho một số nguyên n, in các số từ 1 đến n và các bình phương của nó.
+Đầu vào
+•	Dòng 1: chứa số nguyên dương n (1 <= n <= 100)
+đầu ra
+•	Mỗi dòng i (i = 1,...,n): chứa i và i^2 (các phần tử cách nhau một ký tự SPACE)

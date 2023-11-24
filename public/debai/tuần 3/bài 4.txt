@@ -1,0 +1,7 @@
+Vấn đề 4: Bình NƯỚC
+________________________________________
+Có hai bình, bình a lít và bình b lít (a, b là số nguyên dương). Có một máy bơm với nước không giới hạn. Cho số nguyên dương c, làm thế nào để có được chính xác c lít.
+Đầu vào
+Dòng 1: chứa các số nguyên dương a, b, c (1 <= a, b, c <= 900)
+đầu ra
+ghi số bước hoặc viết -1 (nếu không tìm thấy giải pháp)

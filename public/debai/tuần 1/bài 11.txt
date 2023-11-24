@@ -1,0 +1,19 @@
+Vấn đề 11: Truy vấn cơ bản trên mảng
+________________________________________
+Cho dãy số nguyên a1, a2, ..., an. Thực hiện một chuỗi truy vấn trên chuỗi này bao gồm:
+•	find-max: trả về phần tử lớn nhất của dãy đã cho
+•	find-min: trả về phần tử nhỏ nhất của dãy đã cho
+•	sum: trả về tổng các phần tử của dãy đã cho
+•	find-max-segment ij: trả về phần tử lớn nhất của dãy con từ chỉ số i đến chỉ số j (i <= j)
+
+
+Đầu vào
+•	Khối đầu tiên chứa thông tin về chuỗi đã cho với định dạng sau:
+o	Dòng 1: chứa số nguyên dương n (1 <= n <= 10000)
+o	Dòng 2: chứa n số nguyên a1, a2, ..., an (-1000 <= ai <= 1000)
+o	Khối đầu tiên được kết thúc bởi ký tự *
+•	Khối thứ hai chứa một chuỗi các truy vấn được xác định ở trên, mỗi truy vấn nằm trên một dòng. Khối thứ hai được kết thúc bằng 3 ký tự ***
+
+
+đầu ra
+•	Viết kết quả của mỗi truy vấn vào một dòng tương ứng

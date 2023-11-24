@@ -1,0 +1,9 @@
+Bài tập 1: Lưu lượng tối đa
+________________________________________
+Cho mạng G = (V, E) là đồ thị có trọng số có hướng. Nút s là nguồn và nút t là đích. c(u,v) là dung lượng của cung (u,v). Tìm luồng cực đại trên G.
+Đầu vào
+•Dòng 1: hai số nguyên dương N và M (1 <= N <= 104, 1 <= M <= 106)
+•Dòng 2: chứa 2 số nguyên dương s và t
+•Dòng i+2 (I = 1,. . ., M): chứa hai số nguyên dương u và v là điểm cuối của iquần quèvòng cung
+đầu ra
+Viết giá trị của luồng cực đại được tìm thấy

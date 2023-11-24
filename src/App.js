@@ -1,15 +1,22 @@
 import {
     Button,
     CircularProgress,
+    Collapse,
     Divider,
     Grid,
     InputLabel,
+    List,
+    ListItemButton,
+    ListItemIcon,
+    ListItemText,
     MenuItem,
     Select,
     TextField,
     TextareaAutosize,
     Typography,
 } from '@mui/material';
+import ExpandLess from '@mui/icons-material/ExpandLess';
+import ExpandMore from '@mui/icons-material/ExpandMore';
 import { Fragment, useEffect, useState } from 'react';
 import { Document, Page } from 'react-pdf';
 import ReactPDF, { PDFViewer, StyleSheet, Text, View } from '@react-pdf/renderer';
@@ -136,7 +143,7 @@ function App() {
     const [language, setLanguage] = useState('cpp');
     const [input, setInput] = useState('');
     const [divWidth, setDivWidth] = useState(null);
-
+    const [contentDebai, setContentDebai] = useState('');
     const [week, setWeek] = useState(weeks[0]);
     const [question, setQuestion] = useState({});
     const [baocao, setBaocao] = useState();
@@ -148,6 +155,7 @@ function App() {
             setClicked(true);
         } else if (question && question.name != 'báo cáo') {
             setBaocao('./' + week.name + '/' + question.name + '.txt');
+            setDebai('./debai/' + week.name + '/' + question.name + '.txt');
             setClicked2(true);
         }
     };
@@ -156,12 +164,16 @@ function App() {
     const handleChange = (e) => {
         setWeek(e.target.value);
         setQuestion('');
+        setContentDebai('');
+        setOpen(false);
         setClicked(false);
         setClicked2(false);
     };
 
     const handleChange2 = (e) => {
         setQuestion(e.target.value);
+        setOpen(false);
+        setContentDebai('');
         setClicked2(false);
     };
     const [numPages, setNumPages] = useState();
@@ -171,11 +183,13 @@ function App() {
         setNumPages(numPages);
     }
     const [loading, setLoading] = useState(false);
+    const [debai, setDebai] = useState('');
     useEffect(() => {
         if (question && question.name != 'báo cáo') {
             show();
         }
     }, [baocao]);
+
     const show = () => {
         setLoading(true);
         axios
@@ -191,8 +205,25 @@ function App() {
             .finally(() => {
                 setLoading(false);
             });
+        axios
+            .get(debai)
+            .then((response) => {
+                // response.data chứa nội dung của tệp .txt
+                //   console.log('Nội dung tệp:', response.data);
+                setContentDebai(response.data);
+            })
+            .catch((error) => {
+                console.error('Có lỗi xảy ra:', error);
+            })
+            .finally(() => {
+                setLoading(false);
+            });
     };
+    const [open, setOpen] = useState(false);
 
+    const handleClick2 = () => {
+        setOpen(!open);
+    };
     return (
         <div>
             <Grid container>
@@ -274,6 +305,35 @@ function App() {
                     flexDirection="row"
                 >
                     <Grid item xs={12} md={8} style={{ border: '1px solid #333', height: '0px', width: '800px' }} />
+                    {question && question.name != 'báo cáo' && clicked2 ? (
+                        <Grid item xs={12} md={8}>
+                            <List
+                                sx={{ width: '100%' }}
+                                component="nav"
+                                style={{ backgroundColor: 'rgba(230,239,247,1)' }}
+                            >
+                                <ListItemButton sx={{ bgcolor: 'rgba(209,221,232,1)' }} onClick={handleClick2}>
+                                    <ListItemIcon></ListItemIcon>
+                                    <ListItemText>
+                                        <Typography variant="h5" style={{ color: '#1976d2' }}>
+                                            Đề bài
+                                        </Typography>
+                                    </ListItemText>
+                                    {open ? <ExpandLess /> : <ExpandMore />}
+                                </ListItemButton>
+                                <Collapse
+                                    style={{ maxWidth: '100%', overflowX: 'auto', padding: '10px' }}
+                                    in={open}
+                                    timeout="auto"
+                                    unmountOnExit
+                                >
+                                    <pre style={{ fontSize: '20px' }}>{contentDebai}</pre>
+                                </Collapse>
+                            </List>
+                        </Grid>
+                    ) : (
+                        ''
+                    )}
 
                     {week && question.name == 'báo cáo' && clicked ? (
                         <Grid

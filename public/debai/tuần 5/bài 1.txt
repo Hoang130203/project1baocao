@@ -1,0 +1,8 @@
+Bài toán 1: Cây khung tối thiểu - Kruskal
+________________________________________
+Cho đồ thị liên thông vô hướng G=(V,E) trong đó V={1,…,N}. Mỗi cạnh (u,v)∈E(u,v)∈E có trọng số w(u,v)w(u,v). Tính cây khung nhỏ nhất của G.
+Đầu vào
+•	Dòng 1: N và M (1<N,M<105) trong đó NN là số nút và MM là số cạnh.
+•	Dòng i+1 (i=1,…,M): chứa 3 số nguyên dương u, v, w trong đó w là trọng số của cạnh (u,v)
+đầu ra
+Viết trọng số của cây bao trùm tối thiểu được tìm thấy.

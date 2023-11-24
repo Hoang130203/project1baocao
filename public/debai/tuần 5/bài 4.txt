@@ -1,0 +1,10 @@
+Vấn đề 4: Chu trình Hamiton
+________________________________________
+Cho đồ thị vô hướng G = (V,E). Viết chương trình kiểm tra xem G có phải là đồ thị Hamilton hay không.
+Đầu vào
+•	Dòng 1: số nguyên dương T (số đồ thị)
+•	Các dòng tiếp theo là thông tin về đồ thị T, mỗi dòng có định dạng sau:
+o	Dòng 1: n và m (số nút và cạnh)
+o	Dòng i+1 (i = 1, 2, ..., m): u và v : hai điểm cuối của cạnh thứ i
+đầu ra
+•	trong tôiquần quèdòng, viết 1 nếu tương ứng là đồ thị Hamilton và viết 0, nếu không

@@ -1,0 +1,7 @@
+Vấn đề 5: Trích xuất Năm, Tháng, Ngày từ Chuỗi YYYY-MM-DD
+________________________________________
+Cho một ngày là một chuỗi có định dạng YYYY-MM-DD (trong đó YYYY là năm, MM là tháng (tháng í từ 1 đến 12) và DD là ngày (ngày từ 1 đến 31) )). Trích xuất năm, tháng và ngày.
+Đầu vào
+•	Dòng 1: chứa chuỗi s 
+đầu ra
+•	nếu s không có định dạng YYYY-MM-DD thì viết KHÔNG ĐÚNG. Nếu không, hãy viết năm, tháng và ngày cách nhau bằng ký tự SPACE

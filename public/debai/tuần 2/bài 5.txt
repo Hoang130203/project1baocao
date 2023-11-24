@@ -1,0 +1,13 @@
+Bài 5: Vấn đề: Tạo hoán vị
+________________________________________
+Cho một số nguyên n, viết chương trình tạo tất cả các hoán vị 1, 2, ..., n theo thứ tự từ vựng (các phần tử của hoán vị được phân tách bằng ký tự SPACE).
+Ví dụ
+Đầu vào
+3
+đầu ra
+1 2 3
+1 3 2
+2 1 3
+2 3 1
+3 1 2
+3 2 1

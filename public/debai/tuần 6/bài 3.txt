@@ -1,0 +1,8 @@
+Bài tập 3: Tất cả các cặp đường đi ngắn nhất
+________________________________________
+Cho đồ thị có hướng G = (V, E) trong đó V = {1, 2, ..., n} là tập hợp các nút và w(u,v) là trọng số (độ dài) của cung (u ,v). Tính d(u,v) - độ dài đường đi ngắn nhất từ u đến v trong G, với mọi u,v trong V.
+Đầu vào
+•	Dòng 1: chứa 2 số nguyên dương n và m (1 <= n,m <= 10000)
+•	Dòng i+1 (i = 1, 2, ..., m): chứa 3 số nguyên dương u, v, w trong đó w là trọng số của cung (u,v) (1 <= w <= 1000)
+đầu ra
+•	Dòng i (i = 1, 2, ..., n): ghi dòng thứ i của ma trận d (nếu không có đường đi từ nút i đến nút j thì d(i,j) = -1)

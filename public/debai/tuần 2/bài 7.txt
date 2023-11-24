@@ -1,0 +1,7 @@
+Bài 7: Phương trình số nguyên tuyến tính - hệ số 1
+________________________________________
+Cho hai số nguyên n và M. Viết chương trình sinh ra tất cả các tập hợp có thứ tự (X1, X2, ..., Xn) sao cho: X1 + X2 + . . . + Xn = M
+Đầu vào
+•	Dòng 1: chứa 2 số nguyên n và M (2 <= n <= 10, 1 <= M <= 20)
+đầu ra
+•	Viết vào mỗi dòng X1, X2, ..., Xn cách nhau bằng ký tự SPACE

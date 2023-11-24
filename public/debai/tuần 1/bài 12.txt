@@ -1,0 +1,9 @@
+Vấn đề 12: Chuỗi k chẵn
+________________________________________
+Cho dãy số nguyên a1, a2, . . ., MỘT. Dãy con k được định nghĩa là một dãy gồm k phần tử liên tiếp: ai, ai+1, . . ., ai+k-1. Trọng số của dãy con k là tổng các phần tử của nó.
+Cho các số nguyên dương k và m. Tính số Q của dãy k sao cho trọng số là chẵn.
+Đầu vào
+•	Dòng 1: chứa 2 số nguyên dương n, k (1 <= n <= 100000, 1 <= k <= n/2)
+•	Dòng 2: chứa a1, a2, . . ., MỘT. (1 <= ai <= 10000)
+đầu ra
+•	Viết giá trị Q

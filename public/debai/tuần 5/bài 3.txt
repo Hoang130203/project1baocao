@@ -1,0 +1,13 @@
+Vấn đề 3: Trình tự các nút được BFS truy cập
+________________________________________
+Cho đồ thị vô hướng G = (V,E) trong đó V = {1, 2, ..., n} là tập hợp các nút và E là tập hợp m cạnh.
+Viết chương trình tính toán chuỗi các nút được truy cập bằng thuật toán BFS (các nút được xem xét theo thứ tự từ điển)
+
+
+Đầu vào
+•	Dòng 1: chứa 2 số nguyên n và m là số nút và số cạnh
+•	Dòng i+1 (i = 1, ..., m): chứa 2 số nguyên dương u và v là điểm cuối của cạnh thứ i
+
+
+đầu ra
+Viết chuỗi các nút được thủ tục BFS truy cập (các nút a được phân tách bằng ký tự SPACE)

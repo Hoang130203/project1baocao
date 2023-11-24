@@ -1,0 +1,11 @@
+Vấn đề 4: Chuyển đổi TEXT thành chữ hoa
+________________________________________
+Cho một TEXT, hãy viết chương trình chuyển đổi TEXT thành chữ hoa.
+
+
+Đầu vào
+VĂN BẢN
+
+
+đầu ra
+TEXT trong đó các ký tự được chuyển đổi thành chữ hoa

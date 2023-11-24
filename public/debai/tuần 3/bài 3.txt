@@ -1,0 +1,10 @@
+Vấn đề 3: Kiểm tra dấu ngoặc đơn
+________________________________________
+Cho một chuỗi chỉ chứa các ký tự (, ), [,] {, }. Viết chương trình kiểm tra xem chuỗi biểu thức có đúng hay không.
+Ví dụ
+•	([]{()}()[]): Chính xác
+•	([]{()]()[]): không đúng
+Đầu vào
+•	Một dòng chứa chuỗi (độ dài của chuỗi nhỏ hơn hoặc bằng $10^6$)Một dòng chứa chuỗi (độ dài của chuỗi nhỏ hơn hoặc bằng 106)
+đầu ra
+•	Viết 1 nếu dãy đúng, viết 0 nếu ngược lại

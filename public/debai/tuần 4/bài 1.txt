@@ -1,0 +1,10 @@
+Vấn đề 1: Chuỗi lưu trữ và tìm kiếm
+________________________________________
+Cơ sở dữ liệu chứa một chuỗi khóa k1, k2, ..., kn là các chuỗi (1<=n<=100000). Thực hiện một chuỗi hành động gồm hai loại:
+· find k: tìm và trả về 1 nếu k tồn tại trong cơ sở dữ liệu, và trả về 0, nếu không
+· Insert k: chèn khóa k vào cơ sở dữ liệu và trả về 1 nếu chèn thành công (k không tồn tại trong cơ sở dữ liệu) và trả về 0 nếu chèn thất bại (k tồn tại trong cơ sở dữ liệu)
+Lưu ý rằng độ dài của bất kỳ khóa nào đều lớn hơn 0 và nhỏ hơn hoặc bằng 50.
+Đầu vào
+Hai khối thông tin. Khối đầu tiên chứa khóa (k1,k2,...,kn) trên mỗi dòng. Khối đầu tiên được kết thúc bằng một dòng chứa *. Khối thứ hai là một chuỗi các hành động của hai find được mô tả ở trên: mỗi dòng chứa 2 chuỗi: cmd và k trong đó cmd = find hoặc Insert và k là key (tham số của hành động). Khối thứ hai được kết thúc bằng một dòng chứa ***. Lưu ý rằng số lượng hành động có thể lên tới 100000.
+đầu ra
+Mỗi dòng chứa kết quả (0 hoặc 1) của hành động tương ứng.

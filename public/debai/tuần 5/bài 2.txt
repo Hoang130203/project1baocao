@@ -1,0 +1,10 @@
+Vấn đề 2: Liệt kê thứ tự các nút được DFS truy cập
+________________________________________
+Cho đồ thị vô hướng =(V,E) trong đó V = {1,2,..,n} là tập hợp các nút. Viết chương trình truy cập các nút của G bằng DFS (xem xét thứ tự từ điển của các nút).
+Đầu vào
+•	Dòng 1: chứa 2 số nguyên n và m (1 <= n,m <= 100000)
+•	Dòng i+1: chứa u và v là hai điểm cuối của cạnh thứ i
+
+
+đầu ra
+Trình tự các nút được DFS truy cập

@@ -1,0 +1,17 @@
+Bài 4: Vấn đề: Tạo chuỗi nhị phân không có số 11 liên tiếp
+________________________________________
+Cho một số nguyên n, hãy viết chương trình tạo ra tất cả các chuỗi nhị phân không có số 11 liên tiếp theo thứ tự từ điển.
+Đầu vào
+•	Dòng 1: chứa số nguyên n (1 <= n <= 20)
+đầu ra
+Viết các chuỗi nhị phân theo thứ tự từ điển, mỗi chuỗi trên một dòng
+Ví dụ
+Đầu vào
+3
+đầu ra
+000
+001
+010
+100
+101
+

@@ -1,0 +1,21 @@
+Bài 1: Phân tích việc gửi mã của một cuộc thi lập trình
+________________________________________
+Dữ liệu gửi dự thi lập trình gồm một dãy các dòng, mỗi dòng có các thông tin sau:
+<UserID> <ProblemID> <TimePoint> <Status> <Point>
+trong đó người dùng <UserID> gửi mã của mình để giải quyết vấn đề <ProblemID> tại thời điểm <TimePoint> và nhận trạng thái <Trạng thái> và điểm <Điểm>
+•	<UserID>: chuỗi có độ dài từ 3 đến 10
+•	<ProblemID>: chuỗi có định dạng Pxy trong đó x, y là các chữ số 0,1,...,9 (ví dụ P03, P10)
+•	<TimePoint>: chuỗi biểu thị thời điểm có định dạng HH:MM:SS (ví dụ: 09:45:20 nghĩa là thời điểm 9 giờ 45 phút 20 giây)
+•	<Status>: chuỗi có hai trường hợp (ERR, OK)
+•	<Point>: số nguyên từ {0, 1, 2, ..., 10}
+
+
+Người dùng có thể gửi mã để giải quyết từng vấn đề nhiều lần. Điểm mà người dùng nhận được cho một bài toán là điểm tối đa trong số các bài gửi cho bài toán đó.
+
+
+Thực hiện một chuỗi các truy vấn thuộc các loại sau:
+•	?total_number_submissions: trả về số lượng bài dự thi
+•	?number_error_submision: trả về số lượng bài gửi có trạng thái ERR
+•	?number_error_submision_of_user <UserID>: trả về số lần gửi có trạng thái ERR của người dùng <UserID>
+•	?total_point_of_user <UserID>: trả về tổng điểm của người dùng <UserID>
+•	?number_submission_ Period <from_time_point> <to_time_point>: trả về số lần gửi trong khoảng thời gian từ <from_time_point> đến <to_time_point> (đã bao gồm)

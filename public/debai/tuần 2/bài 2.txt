@@ -1,0 +1,7 @@
+Bài 2: Vấn đề: Tính C_k_n
+________________________________________
+Cho hai số nguyên dương k và n. Tính C(k,n) là số cách để chọn k đối tượng từ một tập hợp n đối tượng nhất định.
+Đầu vào
+•	Dòng 1: hai số nguyên dương k và n (1 <= k,n <= 999)
+đầu ra
+Viết giá trị te C(k,n) modulo 109+7.

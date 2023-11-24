@@ -1,0 +1,7 @@
+Vấn đề 9: Chuyển đổi hh:mm:ss thành giây
+________________________________________
+Cho một thời điểm là một chuỗi có định dạng hh:mm:ss (trong đó hh (0 <= hh <= 23) là giờ, mm (0 <= mm <= 59) là phút và ss ( 0 <= ss <= 59) là số thứ hai). Chuyển đổi thời điểm này thành giây (kết quả = hh*3600 + mm*60 + ss).
+Đầu vào
+Dòng 1: chứa chuỗi s biểu thị thời điểm. 
+đầu ra
+nếu s không có định dạng hh:mm:ss thì viết KHÔNG ĐÚNG. Ngược lại ghi giá trị đã chuyển đổi. 

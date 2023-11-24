@@ -1,0 +1,8 @@
+Bài toán 1: Tính tổng mảng
+________________________________________
+Cho dãy số nguyên a1, a2, ..., an. Tính tổng Q các phần tử của dãy này.
+Đầu vào
+•	Dòng 1: chứa n (1 <= n <= 10000)
+•	Dòng 2: chứa a1, a2, ..., an (-10000 <= ai <= 10000)
+đầu ra
+•	Viết giá trị của Q

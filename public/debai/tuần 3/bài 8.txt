@@ -1,0 +1,14 @@
+Vấn đề 8: Chèn vào giữa chuỗi
+________________________________________
+Cho dãy số nguyên a1, a2, ..., an. Phần tử ở giữa được xác định là phần tử ở chỉ số n/2 nếu n chẵn và n/2+1 nếu ngược lại.
+Thực hiện một chuỗi các hành động có dạng:
+•	THÊM v: thêm giá trị v vào ngay sau phần tử ở giữa dãy a1, a2, ..., an.
+•	IN: in chuỗi ra stdout, các phần tử cách nhau bằng ký tự SPACE
+Đầu vào
+•	Dòng 1: chứa số nguyên dương n (1 <= n <= 100000)
+•	Dòng 2: chứa n số nguyên dương a1, a2, ..., an (1 <= ai <= 1000000)
+•	Các dòng tiếp theo (số dòng có thể lên tới 100000), mỗi dòng chứa một hành động có định dạng trên
+
+
+đầu ra
+Viết (vào mỗi dòng) kết quả của thao tác IN tương ứng

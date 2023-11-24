@@ -1,0 +1,11 @@
+Vấn đề 1: Ngăn xếp mô phỏng
+________________________________________
+Thực hiện một chuỗi các thao tác trên ngăn xếp, mỗi phần tử là một số nguyên:
+•	PUSH v: đẩy giá trị v vào ngăn xếp
+•	POP: xóa một phần tử ra khỏi ngăn xếp và in phần tử này ra thiết bị xuất chuẩn (in NULL nếu ngăn xếp trống)
+Đầu vào
+Mỗi dòng chứa một lệnh (thao tác) thuộc loại
+•	PUSH 
+•	POP
+đầu ra
+•	Viết kết quả của phép toán POP (mỗi kết quả ghi một dòng)
