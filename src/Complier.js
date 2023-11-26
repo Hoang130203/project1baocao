@@ -4,7 +4,7 @@ import { useState } from 'react';
 function Complier({ tuan, bai, input, language }) {
     const [pageContent, setPageContent] = useState('');
     const [file, setFile] = useState();
-
+    const [error, setError] = useState('');
     const fetchData = async () => {
         try {
             const fileResponse = await axios.get(
@@ -37,6 +37,7 @@ function Complier({ tuan, bai, input, language }) {
                 .then(function (response) {
                     console.log(JSON.stringify(response.data));
                     setPageContent(response.data.output);
+                    setError(response.data.error);
                     console.log(postData);
                     // res.send(postData);
                 })
@@ -83,9 +84,11 @@ function Complier({ tuan, bai, input, language }) {
                         paddingTop: '10px',
                     }}
                     display="flex"
-                    flexDirection="column"
+                    flexDirection="row"
                 >
-                    <Grid style={{ color: 'brown', textAlign: 'center' }}>Mai Minh Hoàng- 20215381</Grid>
+                    <Grid style={{ color: 'brown', textAlign: 'center' }} xs={12}>
+                        Mai Minh Hoàng- 20215381
+                    </Grid>
                     <Grid
                         style={{
                             overflow: 'auto',
@@ -95,8 +98,11 @@ function Complier({ tuan, bai, input, language }) {
                             minHeight: '90%',
                         }}
                         padding="10px 20px"
+                        xs={12}
+                        overflow="hidden"
                     >
                         <pre>{pageContent}</pre>
+                        <pre style={{ color: 'red' }}>{error}</pre>
                     </Grid>
                 </Grid>
             </Grid>
