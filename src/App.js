@@ -304,9 +304,9 @@ function App() {
                     alignItems="center"
                     flexDirection="row"
                 >
-                    <Grid item xs={12} md={8} style={{ border: '1px solid #333', height: '0px', width: '800px' }} />
+                    <Grid item xs={11.5} style={{ border: '1px solid #333', height: '0px', width: '800px' }} />
                     {question && question.name != 'báo cáo' && clicked2 ? (
-                        <Grid item xs={12} md={8}>
+                        <Grid item xs={11.5}>
                             <List
                                 sx={{ width: '100%' }}
                                 component="nav"
@@ -338,8 +338,7 @@ function App() {
                     {week && question.name == 'báo cáo' && clicked ? (
                         <Grid
                             item
-                            xs={12}
-                            md={8}
+                            xs={11.5}
                             overflow="auto"
                             ref={(divElement) => divElement && setDivWidth(divElement.offsetWidth)}
                         >
@@ -367,11 +366,18 @@ function App() {
                             </div>
                         </Grid>
                     ) : question && question.name != 'báo cáo' && clicked2 ? (
-                        <Grid item container xs={12} md={8}>
-                            <Grid item xs={12} overflow="auto">
+                        <Grid item container xs={11.5} justifyContent="space-between">
+                            <Grid item xs={5.7} overflow="auto">
                                 <SyntaxHightlighter language="cpp">{file}</SyntaxHightlighter>
                             </Grid>
-                            <Grid item container xs={12} justifyContent="center" padding="30px 0px">
+                            <Grid
+                                item
+                                container
+                                xs={5.7}
+                                justifyContent="flex-start"
+                                padding="30px 0px"
+                                maxHeight="850px"
+                            >
                                 <Grid container item xs={12} display="flex" flexDirection="column">
                                     <Grid item container paddingBottom="10px">
                                         <Grid item xs={3}>
@@ -425,7 +431,7 @@ function App() {
                         ''
                     )}
 
-                    <Grid item xs={12} md={8} style={{ border: '1px solid #333', height: '0px', width: '800px' }} />
+                    <Grid item xs={12} style={{ border: '1px solid #333', height: '0px', width: '800px' }} />
                 </Grid>
             </Grid>
         </div>

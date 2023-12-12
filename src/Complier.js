@@ -61,7 +61,7 @@ function Complier({ tuan, bai, input, language }) {
 
     return (
         <Grid container item xs={12} display="flex" flexDirection="row">
-            <Grid item container paddingRight="3px" paddingTop="30px" xs={12} md={2} justifyContent="center">
+            <Grid item container paddingRight="3px" paddingTop="30px" xs={12} md={2} justifyContent="flex-start">
                 <Grid item>
                     <Button onClick={fetchData} variant="contained">
                         Run
